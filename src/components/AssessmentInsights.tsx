@@ -67,16 +67,27 @@ const AssessmentInsights: React.FC<AssessmentInsightsProps> = ({
                   <Flex.Item margin="0 medium 0 0">
                     <View
                       as="div"
-                      background={insight.type === 'success' ? 'success' : 
+                      borderColor={insight.type === 'success' ? 'success' : 
                                  insight.type === 'warning' ? 'warning' : 'brand'}
+                      borderWidth="medium"
                       borderRadius="circle"
                       padding="small"
-                      display="inline-block"
+                      display="inline-flex"
                       width="40px"
                       height="40px"
-                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center',
+                        width: '40px',
+                        height: '40px'
+                      }}
                     >
-                      <insight.actionIcon size="small" color="primary-inverse" />
+                      <insight.actionIcon 
+                        size="small" 
+                        color={insight.type === 'success' ? 'success' : 
+                               insight.type === 'warning' ? 'warning' : 'brand'} 
+                      />
                     </View>
                   </Flex.Item>
                   <Flex.Item shouldGrow>
@@ -97,7 +108,6 @@ const AssessmentInsights: React.FC<AssessmentInsightsProps> = ({
                 <Button
                   size="small"
                   color="primary"
-                  renderIcon={() => <insight.actionIcon />}
                   onClick={() => handleAction(insight.action, insight.title)}
                 >
                   {insight.action}
