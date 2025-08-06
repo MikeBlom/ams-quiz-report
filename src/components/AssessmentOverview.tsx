@@ -129,7 +129,7 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
 
   try {
     return (
-      <View as="div" minHeight="100vh" background="secondary">
+      <View as="div" minHeight="100vh" background="secondary" padding="80px">
         <View
           as="header"
           background="primary"
@@ -159,7 +159,7 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
           </View>
         </View>
 
-        <View maxWidth="1200px" margin="0 auto" padding="80px">
+        <View maxWidth="1200px" margin="0 auto">
           <View as="section" margin="0 0 large 0">
             <Grid>
               <Grid.Row>
