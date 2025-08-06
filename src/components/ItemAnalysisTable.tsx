@@ -283,7 +283,7 @@ const ItemAnalysisTable: React.FC<ItemAnalysisTableProps> = ({ data, userRole = 
                         </View>
                         {item.flagged && (
                           <View as="div" margin="xx-small 0 0 0">
-                            <Badge type="notification" variant="danger">
+                            <Badge variant="danger">
                               <Text size="x-small">Flagged</Text>
                             </Badge>
                           </View>
