@@ -6,7 +6,7 @@ import { Heading } from '@instructure/ui-heading';
 import { Badge } from '@instructure/ui-badge';
 import { Link } from '@instructure/ui-link';
 import { Flex } from '@instructure/ui-flex';
-import { IconTrendUpwardLine, IconTrendDownwardLine } from '@instructure/ui-icons';
+import { IconArrowUpLine, IconArrowDownLine } from '@instructure/ui-icons';
 import { Link as RouterLink } from 'react-router-dom';
 
 interface SparklineData {
@@ -104,8 +104,7 @@ const EnhancedWidgetCard: React.FC<EnhancedWidgetCardProps> = ({
         to={link}
         isWithinText={false}
         themeOverride={{
-          color: 'inherit',
-          textDecoration: 'none'
+          color: 'inherit'
         }}
       >
         <Flex direction="column" height="100%">
@@ -174,13 +173,13 @@ const EnhancedWidgetCard: React.FC<EnhancedWidgetCardProps> = ({
                 <Flex.Item>
                   <Flex direction="row" alignItems="center">
                     {sparkline.trend === 'up' ? (
-                      <IconTrendUpwardLine color="success" size="x-small" />
+                      <IconArrowUpLine color="success" size="x-small" />
                     ) : (
-                      <IconTrendDownwardLine color="error" size="x-small" />
+                      <IconArrowDownLine color="danger" size="x-small" />
                     )}
                     <Text
                       size="small"
-                      color={sparkline.trend === 'up' ? 'success' : 'error'}
+                      color={sparkline.trend === 'up' ? 'success' : 'danger'}
                       margin="0 0 0 xx-small"
                     >
                       {sparkline.trend === 'up' ? '+' : '-'}{sparkline.trendValue}%

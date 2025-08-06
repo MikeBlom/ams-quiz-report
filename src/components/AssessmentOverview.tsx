@@ -8,10 +8,9 @@ import { Flex } from '@instructure/ui-flex';
 import { Grid } from '@instructure/ui-grid';
 import { 
   IconUserLine, 
-  IconBookLine, 
+  IconDocumentLine, 
   IconTargetLine, 
   IconAnalyticsLine, 
-  IconTrendUpwardLine, 
   IconClockLine,
   IconSettingsLine
 } from '@instructure/ui-icons';
@@ -76,7 +75,7 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
       id: 'items',
       title: 'Item Analysis',
       description: 'Question-level statistics and distractor patterns',
-      icon: IconBookLine,
+      icon: IconDocumentLine,
       value: '12',
       subtitle: 'Total Items',
       link: '/assessment/items',
@@ -166,7 +165,7 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
               <Button
                 color="secondary"
                 size="small"
-                renderIcon={IconSettingsLine}
+                renderIcon={() => <IconSettingsLine />}
               >
                 Customize
               </Button>
@@ -275,7 +274,7 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
                 >
                   <Flex direction="row" alignItems="center" justifyItems="center">
                     <Flex.Item margin="0 small 0 0">
-                      <IconBookLine color="brand" />
+                      <IconDocumentLine color="brand" />
                     </Flex.Item>
                     <Flex.Item>
                       <Text size="large" weight="bold" color="brand">

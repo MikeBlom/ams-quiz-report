@@ -84,7 +84,7 @@ const AssessmentInsights: React.FC<AssessmentInsightsProps> = ({
                 <Button
                   size="small"
                   color="primary"
-                  renderIcon={insight.actionIcon}
+                  renderIcon={() => <insight.actionIcon />}
                   onClick={() => handleAction(insight.action, insight.title)}
                   margin="0 0 0 small"
                 >
