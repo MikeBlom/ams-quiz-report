@@ -1,9 +1,9 @@
 
 import React from 'react';
-import AssessmentDashboard from '@/components/AssessmentDashboard';
+import AssessmentOverview from '@/components/AssessmentOverview';
 
 const Index = () => {
-  return <AssessmentDashboard />;
+  return <AssessmentOverview userRole="teacher" />;
 };
 
 export default Index;
