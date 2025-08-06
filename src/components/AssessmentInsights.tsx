@@ -194,7 +194,7 @@ const InsightCard: React.FC<InsightCardProps> = ({ insight, onAction }) => {
       <Flex direction="column" height="100%">
         {/* Top section with icon and content */}
         <Flex.Item shouldGrow>
-          <Flex direction="row" alignItems="start">
+          <Flex direction="row" alignItems="start" style={{ maxWidth: '100%', overflow: 'hidden' }}>
             <Flex.Item margin="0 medium 0 0">
               <View
                 as="div"
@@ -219,13 +219,25 @@ const InsightCard: React.FC<InsightCardProps> = ({ insight, onAction }) => {
               </View>
             </Flex.Item>
             <Flex.Item shouldGrow style={{ minWidth: 0 }}>
-              <View as="div" margin="0 0 x-small 0">
-                <Text weight="bold" style={{ wordWrap: 'break-word', overflowWrap: 'break-word', hyphens: 'auto' }}>
+              <View as="div" margin="0 0 x-small 0" style={{ overflow: 'hidden', maxWidth: '100%' }}>
+                <Text weight="bold" style={{ 
+                  wordWrap: 'break-word', 
+                  overflowWrap: 'break-word', 
+                  hyphens: 'auto',
+                  whiteSpace: 'normal',
+                  maxWidth: '100%'
+                }}>
                   {insight.title}
                 </Text>
               </View>
-              <View as="div" margin="0 0 medium 0">
-                <Text size="small" color="secondary" style={{ wordWrap: 'break-word', overflowWrap: 'break-word', hyphens: 'auto' }}>
+              <View as="div" margin="0 0 medium 0" style={{ overflow: 'hidden', maxWidth: '100%' }}>
+                <Text size="small" color="secondary" style={{ 
+                  wordWrap: 'break-word', 
+                  overflowWrap: 'break-word', 
+                  hyphens: 'auto',
+                  whiteSpace: 'normal',
+                  maxWidth: '100%'
+                }}>
                   {insight.description}
                 </Text>
               </View>
