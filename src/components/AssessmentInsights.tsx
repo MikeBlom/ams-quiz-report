@@ -16,8 +16,9 @@ interface AssessmentInsightsProps {
 
 const AssessmentInsights: React.FC<AssessmentInsightsProps> = ({ 
   userRole = 'teacher',
-  maxDisplayed = 6 // Default to 6 insights max for good 3-column layout
+  maxDisplayed = 3 // Show 3 insights in columns by default
 }) => {
+  const [showAllInsights, setShowAllInsights] = React.useState(false);
   // Extended insights array to demonstrate scalability
   const allInsights = [
     {
@@ -78,13 +79,9 @@ const AssessmentInsights: React.FC<AssessmentInsightsProps> = ({
     }
   ];
 
-  // Limit insights to maxDisplayed and sort by priority
-  const priorityOrder = { high: 3, medium: 2, low: 1 };
-  const displayedInsights = allInsights
-    .sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority])
-    .slice(0, maxDisplayed);
-  
-  const remainingCount = allInsights.length - displayedInsights.length;
+  // Show first 3 insights by default, or all if showAllInsights is true
+  const displayedInsights = showAllInsights ? allInsights : allInsights.slice(0, 3);
+  const remainingCount = showAllInsights ? 0 : allInsights.length - 3;
 
   const handleAction = (actionType: string, insightTitle: string) => {
     console.log(`Taking action: ${actionType} for insight: ${insightTitle}`);
@@ -102,19 +99,10 @@ const AssessmentInsights: React.FC<AssessmentInsightsProps> = ({
         </Text>
       </View>
       
-      {/* Dynamic Grid Layout based on number of insights */}
+      {/* 3-Column Grid Layout */}
       <Grid>
-        {displayedInsights.length <= 2 ? (
-          // For 1-2 insights: use single row
-          <Grid.Row>
-            {displayedInsights.map((insight, index) => (
-              <Grid.Col key={index} width={displayedInsights.length === 1 ? 12 : 6}>
-                <InsightCard insight={insight} onAction={handleAction} />
-              </Grid.Col>
-            ))}
-          </Grid.Row>
-        ) : (
-          // For 3+ insights: use multi-row 3-column layout
+        {showAllInsights ? (
+          // When showing all insights, use multiple rows of 3 columns
           <>
             {Array.from({ length: Math.ceil(displayedInsights.length / 3) }, (_, rowIndex) => (
               <Grid.Row key={rowIndex}>
@@ -126,20 +114,45 @@ const AssessmentInsights: React.FC<AssessmentInsightsProps> = ({
               </Grid.Row>
             ))}
           </>
+        ) : (
+          // Default: show first 3 insights in single row
+          <Grid.Row>
+            {displayedInsights.map((insight, index) => (
+              <Grid.Col key={index} width={4}>
+                <InsightCard insight={insight} onAction={handleAction} />
+              </Grid.Col>
+            ))}
+          </Grid.Row>
         )}
       </Grid>
 
-      {/* Show remaining insights indicator */}
-      {remainingCount > 0 && (
+      {/* Show/Hide All Insights Toggle */}
+      {!showAllInsights && remainingCount > 0 && (
         <View as="div" margin="medium 0 0 0" textAlign="center">
           <Text size="small" color="secondary">
             + {remainingCount} more insight{remainingCount !== 1 ? 's' : ''} available
           </Text>
           <View as="div" margin="x-small 0 0 0">
-            <Button size="small" color="secondary">
-              View all insights
+            <Button 
+              size="small" 
+              color="secondary"
+              onClick={() => setShowAllInsights(true)}
+            >
+              View All Insights
             </Button>
           </View>
+        </View>
+      )}
+      
+      {showAllInsights && (
+        <View as="div" margin="medium 0 0 0" textAlign="center">
+          <Button 
+            size="small" 
+            color="secondary"
+            onClick={() => setShowAllInsights(false)}
+          >
+            Show Less
+          </Button>
         </View>
       )}
     </View>
