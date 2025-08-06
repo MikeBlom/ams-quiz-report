@@ -185,7 +185,10 @@ const InsightCard: React.FC<InsightCardProps> = ({ insight, onAction }) => {
       width="100%"
       style={{ 
         overflow: 'hidden',
-        wordWrap: 'break-word'
+        wordWrap: 'break-word',
+        overflowWrap: 'break-word',
+        hyphens: 'auto',
+        maxWidth: '100%'
       }}
     >
       <Flex direction="column" height="100%">
@@ -215,14 +218,14 @@ const InsightCard: React.FC<InsightCardProps> = ({ insight, onAction }) => {
                 />
               </View>
             </Flex.Item>
-            <Flex.Item shouldGrow>
+            <Flex.Item shouldGrow style={{ minWidth: 0 }}>
               <View as="div" margin="0 0 x-small 0">
-                <Text weight="bold" style={{ wordWrap: 'break-word' }}>
+                <Text weight="bold" style={{ wordWrap: 'break-word', overflowWrap: 'break-word', hyphens: 'auto' }}>
                   {insight.title}
                 </Text>
               </View>
               <View as="div" margin="0 0 medium 0">
-                <Text size="small" color="secondary" style={{ wordWrap: 'break-word' }}>
+                <Text size="small" color="secondary" style={{ wordWrap: 'break-word', overflowWrap: 'break-word', hyphens: 'auto' }}>
                   {insight.description}
                 </Text>
               </View>
