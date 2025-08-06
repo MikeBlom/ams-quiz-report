@@ -71,19 +71,16 @@ const AssessmentInsights: React.FC<AssessmentInsightsProps> = ({
                                  insight.type === 'warning' ? 'warning' : 'brand'}
                       borderWidth="medium"
                       borderRadius="circle"
-                      padding="small"
-                      display="inline-flex"
-                      width="40px"
-                      height="40px"
                       style={{ 
                         display: 'flex', 
                         alignItems: 'center', 
                         justifyContent: 'center',
                         width: '40px',
-                        height: '40px'
+                        height: '40px',
+                        borderRadius: '50%'
                       }}
-                    >
-                      <insight.actionIcon 
+                     >
+                      <insight.actionIcon
                         size="small" 
                         color={insight.type === 'success' ? 'success' : 
                                insight.type === 'warning' ? 'warning' : 'brand'} 
