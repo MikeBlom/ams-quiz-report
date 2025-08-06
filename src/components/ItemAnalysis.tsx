@@ -1,13 +1,17 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from '@instructure/ui-view';
 import { Heading } from '@instructure/ui-heading';
-import { Tabs } from '@instructure/ui-tabs';
-import ItemAnalysisInsights from './ItemAnalysisInsights';
+import { Text } from '@instructure/ui-text';
+import { Button } from '@instructure/ui-buttons';
+import { Flex } from '@instructure/ui-flex';
+import { Grid } from '@instructure/ui-grid';
 import ItemAnalysisTable from './ItemAnalysisTable';
 
 const ItemAnalysis = () => {
-  // Enhanced mock data with additional fields for scanning and insights
+  const [showDetailedTable, setShowDetailedTable] = useState(false);
+  
+  // Enhanced mock data with additional fields for insights
   const itemData = [
     {
       id: 1,
@@ -18,7 +22,7 @@ const ItemAnalysis = () => {
       discrimination: 0.67,
       pValue: 0.85,
       skipRate: 5,
-      timeSpent: 180, // 3 minutes
+      timeSpent: 180,
       flagged: false,
       trend: 'stable' as const,
       distractorAnalysis: [
@@ -41,7 +45,7 @@ const ItemAnalysis = () => {
       discrimination: 0.43,
       pValue: 0.92,
       skipRate: 2,
-      timeSpent: 95, // 1.5 minutes
+      timeSpent: 95,
       flagged: false,
       trend: 'up' as const,
       distractorAnalysis: [
@@ -64,7 +68,7 @@ const ItemAnalysis = () => {
       discrimination: 0.78,
       pValue: 0.58,
       skipRate: 18,
-      timeSpent: 420, // 7 minutes
+      timeSpent: 420,
       flagged: true,
       trend: 'down' as const,
       distractorAnalysis: [
@@ -88,7 +92,7 @@ const ItemAnalysis = () => {
       discrimination: 0.55,
       pValue: 0.71,
       skipRate: 8,
-      timeSpent: 240, // 4 minutes
+      timeSpent: 240,
       flagged: false,
       trend: 'stable' as const,
       distractorAnalysis: [
@@ -111,7 +115,7 @@ const ItemAnalysis = () => {
       discrimination: 0.82,
       pValue: 0.45,
       skipRate: 22,
-      timeSpent: 380, // 6.3 minutes
+      timeSpent: 380,
       flagged: true,
       trend: 'down' as const,
       distractorAnalysis: [
@@ -135,7 +139,7 @@ const ItemAnalysis = () => {
       discrimination: 0.61,
       pValue: 0.62,
       skipRate: 12,
-      timeSpent: 275, // 4.6 minutes
+      timeSpent: 275,
       flagged: false,
       trend: 'up' as const,
       distractorAnalysis: [
@@ -151,29 +155,210 @@ const ItemAnalysis = () => {
     }
   ];
 
+  // Generate insights based on the data
+  const generateInsights = () => {
+    const totalQuestions = itemData.length;
+    const lowPerformingQuestions = itemData.filter(item => item.correctRate < 60);
+    const highSkipRateQuestions = itemData.filter(item => item.skipRate > 15);
+    const flaggedQuestions = itemData.filter(item => item.flagged);
+    const decliningQuestions = itemData.filter(item => item.trend === 'down');
+
+    return [
+      {
+        type: 'warning',
+        title: `${lowPerformingQuestions.length} Low-Performing Questions Need Attention`,
+        description: `Questions ${lowPerformingQuestions.map(q => q.id).join(', ')} have correct rates below 60%. Consider reviewing instructional approach or question clarity.`,
+        action: 'Review Content Coverage',
+        actionIcon: 'warning',
+        relatedQuestions: lowPerformingQuestions.map(q => q.id)
+      },
+      {
+        type: 'warning',
+        title: `${highSkipRateQuestions.length} Questions with High Skip Rates`,
+        description: `Questions ${highSkipRateQuestions.map(q => q.id).join(', ')} have skip rates above 15%. Students may find these too challenging or time-consuming.`,
+        action: 'Analyze Question Complexity',
+        actionIcon: 'clock',
+        relatedQuestions: highSkipRateQuestions.map(q => q.id)
+      },
+      {
+        type: 'info',
+        title: `${decliningQuestions.length} Questions Showing Declining Performance`,
+        description: `Performance trends downward on questions ${decliningQuestions.map(q => q.id).join(', ')}. May indicate need for content reinforcement.`,
+        action: 'Plan Remediation',
+        actionIcon: 'analytics',
+        relatedQuestions: decliningQuestions.map(q => q.id)
+      }
+    ].filter(insight => insight.relatedQuestions.length > 0);
+  };
+
+  const insights = generateInsights();
+
   return (
     <View as="div">
-      <Tabs variant="secondary" margin="0 0 large 0">
-        <Tabs.Panel 
-          renderTitle="Overview & Insights" 
-          id="insights"
-          isSelected
-        >
-          <ItemAnalysisInsights data={itemData} />
-        </Tabs.Panel>
+      {/* Insights Section - Same design pattern as main page */}
+      <View as="section" margin="0 0 large 0">
+        <Heading level="h2" margin="0 0 medium 0">
+          Item Analysis Insights & Recommendations
+        </Heading>
+        <View as="div" margin="0 0 medium 0">
+          <Text size="small" color="secondary">
+            AI-powered insights to guide question review and instructional planning
+          </Text>
+        </View>
         
-        <Tabs.Panel 
-          renderTitle="Detailed Analysis" 
-          id="detailed"
-        >
-          <View as="div" margin="medium 0 0 0">
-            <Heading level="h2" margin="0 0 medium 0">
+        <Grid>
+          <Grid.Row>
+            {insights.slice(0, 3).map((insight, index) => (
+              <Grid.Col key={index} width={4}>
+                <View 
+                  as="div" 
+                  margin="0 0 medium 0" 
+                  padding="medium" 
+                  background="primary" 
+                  borderRadius="medium" 
+                  borderWidth="small"
+                  height="100%"
+                  style={{ overflow: 'hidden' }}
+                >
+                  <Flex direction="column" height="100%">
+                    <Flex.Item shouldGrow>
+                      <Flex direction="row" alignItems="start">
+                        <Flex.Item margin="0 medium 0 0">
+                          <View
+                            as="div"
+                            borderColor={insight.type === 'warning' ? 'warning' : 'brand'}
+                            borderWidth="medium"
+                            borderRadius="circle"
+                            style={{ 
+                              display: 'flex', 
+                              alignItems: 'center', 
+                              justifyContent: 'center',
+                              width: '40px',
+                              height: '40px',
+                              borderRadius: '50%'
+                            }}
+                          >
+                            <Text size="small" weight="bold" color={insight.type === 'warning' ? 'warning' : 'brand'}>
+                              {insight.relatedQuestions.length}
+                            </Text>
+                          </View>
+                        </Flex.Item>
+                        <Flex.Item shouldGrow>
+                          <View as="div" margin="0 0 x-small 0">
+                            <Text weight="bold" style={{ wordWrap: 'break-word' }}>
+                              {insight.title}
+                            </Text>
+                          </View>
+                          <View as="div" margin="0 0 medium 0">
+                            <Text size="small" color="secondary" style={{ wordWrap: 'break-word' }}>
+                              {insight.description}
+                            </Text>
+                          </View>
+                        </Flex.Item>
+                      </Flex>
+                    </Flex.Item>
+                    
+                    <Flex.Item>
+                      <View as="div" textAlign="end">
+                        <Button
+                          size="small"
+                          color="primary"
+                          onClick={() => {
+                            // Filter table to show only related questions
+                            setShowDetailedTable(true);
+                          }}
+                        >
+                          {insight.action}
+                        </Button>
+                      </View>
+                    </Flex.Item>
+                  </Flex>
+                </View>
+              </Grid.Col>
+            ))}
+          </Grid.Row>
+        </Grid>
+      </View>
+
+      {/* Detailed Analysis Section */}
+      <View as="section">
+        <Flex direction="row" justifyItems="space-between" alignItems="center" margin="0 0 medium 0">
+          <Flex.Item>
+            <Heading level="h2">
               Question-by-Question Analysis
             </Heading>
-            <ItemAnalysisTable data={itemData} />
-          </View>
-        </Tabs.Panel>
-      </Tabs>
+            <Text size="small" color="secondary">
+              Detailed performance metrics and distractor analysis for each question
+            </Text>
+          </Flex.Item>
+          <Flex.Item>
+            <Button
+              color={showDetailedTable ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setShowDetailedTable(!showDetailedTable)}
+            >
+              {showDetailedTable ? 'Show Summary' : 'Show Detailed View'}
+            </Button>
+          </Flex.Item>
+        </Flex>
+        
+        {showDetailedTable ? (
+          <ItemAnalysisTable data={itemData} />
+        ) : (
+          // Summary Cards View
+          <Grid>
+            {Array.from({ length: Math.ceil(itemData.length / 3) }, (_, rowIndex) => (
+              <Grid.Row key={rowIndex}>
+                {itemData.slice(rowIndex * 3, (rowIndex + 1) * 3).map((item) => (
+                  <Grid.Col key={item.id} width={4}>
+                    <View 
+                      as="div" 
+                      margin="0 0 medium 0" 
+                      padding="medium" 
+                      background="primary" 
+                      borderRadius="medium" 
+                      borderWidth="small"
+                      borderColor={item.flagged ? 'warning' : 'secondary'}
+                    >
+                      <View as="div" margin="0 0 small 0">
+                        <Flex direction="row" justifyItems="space-between" alignItems="start">
+                          <Text weight="bold">Q{item.id}: {item.standard}</Text>
+                          <Text 
+                            size="large" 
+                            weight="bold" 
+                            color={item.correctRate >= 75 ? 'success' : item.correctRate >= 60 ? 'warning' : 'danger'}
+                          >
+                            {item.correctRate}%
+                          </Text>
+                        </Flex>
+                      </View>
+                      
+                      <View as="div" margin="0 0 small 0">
+                        <Text size="small" color="secondary">
+                          {item.question.length > 80 ? `${item.question.substring(0, 80)}...` : item.question}
+                        </Text>
+                      </View>
+                      
+                      <View as="div" margin="0 0 small 0">
+                        <Flex direction="row" justifyItems="space-between">
+                          <Text size="x-small" color="secondary">Skip Rate: {item.skipRate}%</Text>
+                          <Text size="x-small" color="secondary">Discrimination: {item.discrimination}</Text>
+                        </Flex>
+                      </View>
+                      
+                      {item.flagged && (
+                        <View as="div" margin="small 0 0 0">
+                          <Text size="x-small" color="warning" weight="bold">⚠ Flagged for Review</Text>
+                        </View>
+                      )}
+                    </View>
+                  </Grid.Col>
+                ))}
+              </Grid.Row>
+            ))}
+          </Grid>
+        )}
+      </View>
     </View>
   );
 };
