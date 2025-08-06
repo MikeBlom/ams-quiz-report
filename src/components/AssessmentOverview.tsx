@@ -14,6 +14,7 @@ import {
   IconSettingsLine
 } from '@instructure/ui-icons';
 import EnhancedWidgetCard from './EnhancedWidgetCard';
+import AssessmentInsights from './AssessmentInsights';
 
 interface WidgetCardProps {
   id: string;
@@ -160,10 +161,7 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
 
         <View maxWidth="1200px" margin="0 auto" padding="large">
           <View as="section" margin="0 0 large 0">
-            <Heading level="h2" margin="0 0 medium 0">
-              Key Insights
-            </Heading>
-            <Text>Assessment insights will be displayed here.</Text>
+            <AssessmentInsights userRole={userRole} />
           </View>
 
           <View as="section" margin="0 0 large 0">
