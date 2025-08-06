@@ -60,34 +60,48 @@ const AssessmentInsights: React.FC<AssessmentInsightsProps> = ({
       
       <View as="div">
         {insights.map((insight, index) => (
-          <View key={index} as="div" margin="0 0 medium 0">
-            <Flex direction="row" alignItems="start">
-              <Flex.Item margin="0 small 0 0">
-                <View
-                  as="div"
-                  background={insight.type === 'success' ? 'success' : 
-                             insight.type === 'warning' ? 'warning' : 'brand'}
-                  borderRadius="circle"
-                  padding="x-small"
-                  display="inline-block"
-                >
-                  <insight.actionIcon size="x-small" color="primary-inverse" />
-                </View>
-              </Flex.Item>
+          <View key={index} as="div" margin="0 0 medium 0" padding="medium" background="primary" borderRadius="medium" borderWidth="small">
+            <Flex direction="row" justifyItems="space-between" alignItems="start">
               <Flex.Item shouldGrow>
-                <View as="div" margin="0 0 x-small 0">
-                  <Text weight="bold">
-                    {insight.title}
-                  </Text>
-                </View>
-                <View as="div" margin="0 0 x-small 0">
-                  <Text size="small" color="secondary">
-                    {insight.description}
-                  </Text>
-                </View>
-                <Text size="small" color="brand" weight="bold">
-                  Recommended: {insight.action}
-                </Text>
+                <Flex direction="row" alignItems="start">
+                  <Flex.Item margin="0 medium 0 0">
+                    <View
+                      as="div"
+                      background={insight.type === 'success' ? 'success' : 
+                                 insight.type === 'warning' ? 'warning' : 'brand'}
+                      borderRadius="circle"
+                      padding="small"
+                      display="inline-block"
+                      width="40px"
+                      height="40px"
+                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      <insight.actionIcon size="small" color="primary-inverse" />
+                    </View>
+                  </Flex.Item>
+                  <Flex.Item shouldGrow>
+                    <View as="div" margin="0 0 x-small 0">
+                      <Text weight="bold">
+                        {insight.title}
+                      </Text>
+                    </View>
+                    <View as="div" margin="0 0 x-small 0">
+                      <Text size="small" color="secondary">
+                        {insight.description}
+                      </Text>
+                    </View>
+                  </Flex.Item>
+                </Flex>
+              </Flex.Item>
+              <Flex.Item>
+                <Button
+                  size="small"
+                  color="primary"
+                  renderIcon={() => <insight.actionIcon />}
+                  onClick={() => handleAction(insight.action, insight.title)}
+                >
+                  {insight.action}
+                </Button>
               </Flex.Item>
             </Flex>
           </View>
