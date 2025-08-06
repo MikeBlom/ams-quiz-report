@@ -159,25 +159,14 @@ const EnhancedWidgetCard: React.FC<EnhancedWidgetCardProps> = ({
             <Flex direction="row" justifyItems="space-between" alignItems="end">
               <Flex.Item>
                 <View as="div">
-                  <Flex direction="row" alignItems="end">
-                    <Flex.Item margin="0 medium 0 0">
-                      <Text size="xx-large" weight="bold" color="brand">
-                        {value}
-                      </Text>
-                      <View as="div" margin="xx-small 0 0 0">
-                        <Text size="small" color="secondary">
-                          {subtitle}
-                        </Text>
-                      </View>
-                    </Flex.Item>
-                    {sparkline && (
-                      <Flex.Item>
-                        <View as="div" margin="0 0 small 0">
-                          {renderSparkline(sparkline.values)}
-                        </View>
-                      </Flex.Item>
-                    )}
-                  </Flex>
+                  <Text size="xx-large" weight="bold" color="brand">
+                    {value}
+                  </Text>
+                  <View as="div" margin="xx-small 0 0 0">
+                    <Text size="small" color="secondary">
+                      {subtitle}
+                    </Text>
+                  </View>
                 </View>
               </Flex.Item>
               {sparkline && (

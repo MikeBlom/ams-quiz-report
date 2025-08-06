@@ -181,7 +181,12 @@ const InsightCard: React.FC<InsightCardProps> = ({ insight, onAction }) => {
       background="primary" 
       borderRadius="medium" 
       borderWidth="small"
-      height="100%" // Ensure equal height cards
+      height="100%"
+      width="100%"
+      style={{ 
+        overflow: 'hidden',
+        wordWrap: 'break-word'
+      }}
     >
       <Flex direction="column" height="100%">
         {/* Top section with icon and content */}
@@ -212,12 +217,12 @@ const InsightCard: React.FC<InsightCardProps> = ({ insight, onAction }) => {
             </Flex.Item>
             <Flex.Item shouldGrow>
               <View as="div" margin="0 0 x-small 0">
-                <Text weight="bold">
+                <Text weight="bold" style={{ wordWrap: 'break-word' }}>
                   {insight.title}
                 </Text>
               </View>
               <View as="div" margin="0 0 medium 0">
-                <Text size="small" color="secondary">
+                <Text size="small" color="secondary" style={{ wordWrap: 'break-word' }}>
                   {insight.description}
                 </Text>
               </View>
@@ -226,12 +231,13 @@ const InsightCard: React.FC<InsightCardProps> = ({ insight, onAction }) => {
         </Flex.Item>
         
         {/* Bottom section with button */}
-        <Flex.Item>
-          <View as="div" textAlign="end">
+        <Flex.Item style={{ minWidth: 0 }}>
+          <View as="div" textAlign="end" style={{ whiteSpace: 'nowrap' }}>
             <Button
               size="small"
               color="primary"
               onClick={() => onAction(insight.action, insight.title)}
+              style={{ minWidth: 'auto' }}
             >
               {insight.action}
             </Button>
