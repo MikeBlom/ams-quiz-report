@@ -97,128 +97,119 @@ const EnhancedWidgetCard: React.FC<EnhancedWidgetCardProps> = ({
     }
   };
 
-  try {
-    return (
-      <View
-        as="div"
-        borderWidth="small"
-        borderRadius="medium"
-        padding="medium"
-        background="primary"
-        shadow="resting"
-        position="relative"
-        draggable
-        onDragStart={(e) => onDragStart?.(e, id)}
-        onDragEnd={onDragEnd}
-        style={{
-          cursor: 'pointer',
-          transition: 'all 0.2s ease',
-          borderLeft: priority === 'high' ? '4px solid #0074D9' : undefined
+  return (
+    <View
+      as="div"
+      borderWidth="small"
+      borderRadius="medium"
+      padding="medium"
+      background="primary"
+      shadow="resting"
+      position="relative"
+      draggable
+      onDragStart={(e) => onDragStart?.(e, id)}
+      onDragEnd={onDragEnd}
+      style={{
+        cursor: 'pointer',
+        transition: 'all 0.2s ease',
+        borderLeft: priority === 'high' ? '4px solid #0074D9' : undefined
+      }}
+    >
+      <Link
+        as={RouterLink}
+        to={link}
+        isWithinText={false}
+        themeOverride={{
+          color: 'inherit'
         }}
       >
-        <Link
-          as={RouterLink}
-          to={link}
-          isWithinText={false}
-          themeOverride={{
-            color: 'inherit'
-          }}
-        >
-          <Flex direction="column" height="100%">
-            <Flex.Item>
-              <Flex direction="row" justifyItems="space-between" alignItems="start">
-                <Flex.Item shouldGrow>
-                  <Flex direction="row" alignItems="center">
-                    <Flex.Item margin="0 small 0 0">
-                      <View
-                        as="div"
-                        background="brand"
-                        borderRadius="small"
-                        padding="x-small"
-                        display="inline-block"
-                      >
-                        <IconComponent size="small" />
-                      </View>
-                    </Flex.Item>
-                    <Flex.Item>
-                      <Heading level="h3" margin="0 0 xx-small 0">
-                        {title}
-                      </Heading>
-                      {priority === 'high' && (
-                        <Badge
-                          type="notification"
-                          variant="primary"
-                          margin="0 0 0 small"
-                        >
-                          Priority
-                        </Badge>
-                      )}
-                    </Flex.Item>
-                  </Flex>
-                </Flex.Item>
-                <Flex.Item>
-                  {sparkline && (
-                    <View as="div" margin="0 0 0 small">
-                      {renderSparkline(sparkline.values)}
+        <Flex direction="column" height="100%">
+          <Flex.Item>
+            <Flex direction="row" justifyItems="space-between" alignItems="start">
+              <Flex.Item shouldGrow>
+                <Flex direction="row" alignItems="center">
+                  <Flex.Item margin="0 small 0 0">
+                    <View
+                      as="div"
+                      background="brand"
+                      borderRadius="small"
+                      padding="x-small"
+                      display="inline-block"
+                    >
+                      <IconComponent size="small" />
                     </View>
-                  )}
-                </Flex.Item>
-              </Flex>
-            </Flex.Item>
-            
-            <Flex.Item shouldGrow margin="small 0">
-              <Text size="small" color="secondary">
-                {description}
-              </Text>
-            </Flex.Item>
-            
-            <Flex.Item>
-              <Flex direction="row" justifyItems="space-between" alignItems="end">
-                <Flex.Item>
-                  <View as="div">
-                    <Text size="x-large" weight="bold" color="brand">
-                      {value}
+                  </Flex.Item>
+                  <Flex.Item>
+                    <Heading level="h3" margin="0 0 xx-small 0">
+                      {title}
+                    </Heading>
+                    {priority === 'high' && (
+                      <Badge
+                        type="notification"
+                        variant="primary"
+                        margin="0 0 0 small"
+                      >
+                        Priority
+                      </Badge>
+                    )}
+                  </Flex.Item>
+                </Flex>
+              </Flex.Item>
+              <Flex.Item>
+                {sparkline && (
+                  <View as="div" margin="0 0 0 small">
+                    {renderSparkline(sparkline.values)}
+                  </View>
+                )}
+              </Flex.Item>
+            </Flex>
+          </Flex.Item>
+          
+          <Flex.Item shouldGrow margin="small 0">
+            <Text size="small" color="secondary">
+              {description}
+            </Text>
+          </Flex.Item>
+          
+          <Flex.Item>
+            <Flex direction="row" justifyItems="space-between" alignItems="end">
+              <Flex.Item>
+                <View as="div">
+                  <Text size="x-large" weight="bold" color="brand">
+                    {value}
+                  </Text>
+                  <View as="div" margin="xx-small 0 0 0">
+                    <Text size="small" color="secondary">
+                      {subtitle}
                     </Text>
-                    <View as="div" margin="xx-small 0 0 0">
-                      <Text size="small" color="secondary">
-                        {subtitle}
+                  </View>
+                </View>
+              </Flex.Item>
+              {sparkline && (
+                <Flex.Item>
+                  <Flex direction="row" alignItems="center">
+                    {sparkline.trend === 'up' ? (
+                      <IconArrowUpLine color="success" size="x-small" />
+                    ) : (
+                      <IconArrowDownLine color="error" size="x-small" />
+                    )}
+                    <View as="div" margin="0 0 0 xx-small">
+                      <Text
+                        size="small"
+                        color={sparkline.trend === 'up' ? 'success' : 'danger'}
+                      >
+                        {sparkline.trend === 'up' ? '+' : '-'}{sparkline.trendValue}%
                       </Text>
                     </View>
-                  </View>
+                  </Flex>
                 </Flex.Item>
-                {sparkline && (
-                  <Flex.Item>
-                    <Flex direction="row" alignItems="center">
-                      {sparkline.trend === 'up' ? (
-                        <IconArrowUpLine color="success" size="x-small" />
-                      ) : (
-                        <IconArrowDownLine color="error" size="x-small" />
-                      )}
-                      <View as="div" margin="0 0 0 xx-small">
-                        <Text
-                          size="small"
-                          color={sparkline.trend === 'up' ? 'success' : 'danger'}
-                        >
-                          {sparkline.trend === 'up' ? '+' : '-'}{sparkline.trendValue}%
-                        </Text>
-                      </View>
-                    </Flex>
-                  </Flex.Item>
-                )}
-              </Flex>
-            </Flex.Item>
-          </Flex>
-        </Link>
-      </View>
-    );
-  } catch (error) {
-    console.error('Error rendering EnhancedWidgetCard:', error);
-    return (
-      <View as="div" padding="medium" background="primary">
-        <Text>Error loading widget card</Text>
-      </View>
-    );
-  }
+              )}
+            </Flex>
+          </Flex.Item>
+        </Flex>
+      </Link>
+    </View>
+  );
 };
 
 export default EnhancedWidgetCard;

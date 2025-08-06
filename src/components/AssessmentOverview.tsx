@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { View } from '@instructure/ui-view';
 import { Text } from '@instructure/ui-text';
