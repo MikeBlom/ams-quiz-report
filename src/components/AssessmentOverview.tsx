@@ -14,7 +14,6 @@ import {
   IconClockLine,
   IconSettingsLine
 } from '@instructure/ui-icons';
-import AssessmentInsights from './AssessmentInsights';
 import EnhancedWidgetCard from './EnhancedWidgetCard';
 
 interface WidgetCardProps {
@@ -40,6 +39,8 @@ interface AssessmentOverviewProps {
 const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({ 
   userRole = 'teacher' 
 }) => {
+  console.log('AssessmentOverview rendering with userRole:', userRole);
+
   const [widgets, setWidgets] = useState<WidgetCardProps[]>([
     {
       id: 'students',
@@ -124,209 +125,205 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
     setIsDragging(false);
   };
 
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-  };
-
-  const handleDrop = (e: React.DragEvent, dropIndex: number) => {
-    e.preventDefault();
-    const draggedId = e.dataTransfer.getData('text/plain');
-    const draggedIndex = widgets.findIndex(w => w.id === draggedId);
-    
-    if (draggedIndex !== -1 && draggedIndex !== dropIndex) {
-      const newWidgets = [...widgets];
-      const [draggedWidget] = newWidgets.splice(draggedIndex, 1);
-      newWidgets.splice(dropIndex, 0, draggedWidget);
-      setWidgets(newWidgets);
-    }
-    setIsDragging(false);
-  };
-
-  return (
-    <View as="div" minHeight="100vh" background="secondary">
-      {/* Header */}
-      <View
-        as="header"
-        background="primary"
-        borderWidth="0 0 small 0"
-        padding="medium"
-      >
-        <View maxWidth="1200px" margin="0 auto">
-          <Flex direction="row" justifyItems="space-between" alignItems="center">
-            <Flex.Item shouldGrow>
-              <Heading level="h1" margin="0 0 xx-small 0">
-                Assessment Overview
-              </Heading>
-              <Text color="secondary">
-                {assessmentData.title} • {assessmentData.date}
-              </Text>
-            </Flex.Item>
-            <Flex.Item>
-              <Button
-                color="secondary"
-                size="small"
-                renderIcon={() => <IconSettingsLine />}
-              >
-                Customize
-              </Button>
-            </Flex.Item>
-          </Flex>
-        </View>
-      </View>
-
-      <View maxWidth="1200px" margin="0 auto" padding="large">
-        {/* Insights Section - Now at the top */}
-        <AssessmentInsights userRole={userRole} />
-
-        {/* Quick Stats */}
-        <View as="section" margin="0 0 large 0">
-          <Grid>
-            <Grid.Row>
-              <Grid.Col width={3}>
-                <View
-                  as="div"
-                  borderWidth="small"
-                  borderRadius="medium"
-                  padding="medium"
-                  background="primary"
-                  textAlign="center"
+  try {
+    return (
+      <View as="div" minHeight="100vh" background="secondary">
+        {/* Header */}
+        <View
+          as="header"
+          background="primary"
+          borderWidth="0 0 small 0"
+          padding="medium"
+        >
+          <View maxWidth="1200px" margin="0 auto">
+            <Flex direction="row" justifyItems="space-between" alignItems="center">
+              <Flex.Item shouldGrow>
+                <Heading level="h1" margin="0 0 xx-small 0">
+                  Assessment Overview
+                </Heading>
+                <Text color="secondary">
+                  {assessmentData.title} • {assessmentData.date}
+                </Text>
+              </Flex.Item>
+              <Flex.Item>
+                <Button
+                  color="secondary"
+                  size="small"
                 >
-                  <Flex direction="row" alignItems="center" justifyItems="center">
-                    <Flex.Item margin="0 small 0 0">
-                      <IconUserLine color="brand" />
-                    </Flex.Item>
-                    <Flex.Item>
-                      <Text size="large" weight="bold" color="brand">
-                        {assessmentData.completed}
-                      </Text>
-                      <View as="div">
-                        <Text size="small" color="secondary">
-                          Completed
-                        </Text>
-                      </View>
-                    </Flex.Item>
-                  </Flex>
-                </View>
-              </Grid.Col>
-              
-              <Grid.Col width={3}>
-                <View
-                  as="div"
-                  borderWidth="small"
-                  borderRadius="medium"
-                  padding="medium"
-                  background="primary"
-                  textAlign="center"
-                >
-                  <Flex direction="row" alignItems="center" justifyItems="center">
-                    <Flex.Item margin="0 small 0 0">
-                      <IconTargetLine color="brand" />
-                    </Flex.Item>
-                    <Flex.Item>
-                      <Text size="large" weight="bold" color="brand">
-                        {assessmentData.averageScore}%
-                      </Text>
-                      <View as="div">
-                        <Text size="small" color="secondary">
-                          Avg Score
-                        </Text>
-                      </View>
-                    </Flex.Item>
-                  </Flex>
-                </View>
-              </Grid.Col>
-
-              <Grid.Col width={3}>
-                <View
-                  as="div"
-                  borderWidth="small"
-                  borderRadius="medium"
-                  padding="medium"
-                  background="primary"
-                  textAlign="center"
-                >
-                  <Flex direction="row" alignItems="center" justifyItems="center">
-                    <Flex.Item margin="0 small 0 0">
-                      <IconClockLine color="brand" />
-                    </Flex.Item>
-                    <Flex.Item>
-                      <Text size="large" weight="bold" color="brand">
-                        {assessmentData.timeSpent}
-                      </Text>
-                      <View as="div">
-                        <Text size="small" color="secondary">
-                          Avg Time
-                        </Text>
-                      </View>
-                    </Flex.Item>
-                  </Flex>
-                </View>
-              </Grid.Col>
-
-              <Grid.Col width={3}>
-                <View
-                  as="div"
-                  borderWidth="small"
-                  borderRadius="medium"
-                  padding="medium"
-                  background="primary"
-                  textAlign="center"
-                >
-                  <Flex direction="row" alignItems="center" justifyItems="center">
-                    <Flex.Item margin="0 small 0 0">
-                      <IconDocumentLine color="brand" />
-                    </Flex.Item>
-                    <Flex.Item>
-                      <Text size="large" weight="bold" color="brand">
-                        12
-                      </Text>
-                      <View as="div">
-                        <Text size="small" color="secondary">
-                          Total Items
-                        </Text>
-                      </View>
-                    </Flex.Item>
-                  </Flex>
-                </View>
-              </Grid.Col>
-            </Grid.Row>
-          </Grid>
+                  <IconSettingsLine />
+                  Customize
+                </Button>
+              </Flex.Item>
+            </Flex>
+          </View>
         </View>
 
-        {/* Analysis Widgets */}
-        <View as="section">
-          <Flex direction="row" justifyItems="space-between" alignItems="center" margin="0 0 medium 0">
-            <Flex.Item>
-              <Heading level="h2">
-                Analysis Modules
-              </Heading>
-            </Flex.Item>
-            <Flex.Item>
-              <Text size="small" color="secondary">
-                Drag to reorder • Click to explore
-              </Text>
-            </Flex.Item>
-          </Flex>
-          
-          <Grid>
-            <Grid.Row>
-              {widgets.map((widget, index) => (
-                <Grid.Col key={widget.id} width={6}>
-                  <View margin="0 0 medium 0">
-                    <EnhancedWidgetCard
-                      {...widget}
-                      onDragStart={handleDragStart}
-                      onDragEnd={handleDragEnd}
-                    />
+        <View maxWidth="1200px" margin="0 auto" padding="large">
+          {/* Simple Insights Section - Removed AssessmentInsights dependency */}
+          <View as="section" margin="0 0 large 0">
+            <Heading level="h2" margin="0 0 medium 0">
+              Key Insights
+            </Heading>
+            <Text>Assessment insights will be displayed here.</Text>
+          </View>
+
+          {/* Quick Stats */}
+          <View as="section" margin="0 0 large 0">
+            <Grid>
+              <Grid.Row>
+                <Grid.Col width={3}>
+                  <View
+                    as="div"
+                    borderWidth="small"
+                    borderRadius="medium"
+                    padding="medium"
+                    background="primary"
+                    textAlign="center"
+                  >
+                    <Flex direction="row" alignItems="center" justifyItems="center">
+                      <Flex.Item margin="0 small 0 0">
+                        <IconUserLine />
+                      </Flex.Item>
+                      <Flex.Item>
+                        <Text size="large" weight="bold">
+                          {assessmentData.completed}
+                        </Text>
+                        <View as="div">
+                          <Text size="small">
+                            Completed
+                          </Text>
+                        </View>
+                      </Flex.Item>
+                    </Flex>
                   </View>
                 </Grid.Col>
-              ))}
-            </Grid.Row>
-          </Grid>
+                
+                <Grid.Col width={3}>
+                  <View
+                    as="div"
+                    borderWidth="small"
+                    borderRadius="medium"
+                    padding="medium"
+                    background="primary"
+                    textAlign="center"
+                  >
+                    <Flex direction="row" alignItems="center" justifyItems="center">
+                      <Flex.Item margin="0 small 0 0">
+                        <IconTargetLine />
+                      </Flex.Item>
+                      <Flex.Item>
+                        <Text size="large" weight="bold">
+                          {assessmentData.averageScore}%
+                        </Text>
+                        <View as="div">
+                          <Text size="small">
+                            Avg Score
+                          </Text>
+                        </View>
+                      </Flex.Item>
+                    </Flex>
+                  </View>
+                </Grid.Col>
+
+                <Grid.Col width={3}>
+                  <View
+                    as="div"
+                    borderWidth="small"
+                    borderRadius="medium"
+                    padding="medium"
+                    background="primary"
+                    textAlign="center"
+                  >
+                    <Flex direction="row" alignItems="center" justifyItems="center">
+                      <Flex.Item margin="0 small 0 0">
+                        <IconClockLine />
+                      </Flex.Item>
+                      <Flex.Item>
+                        <Text size="large" weight="bold">
+                          {assessmentData.timeSpent}
+                        </Text>
+                        <View as="div">
+                          <Text size="small">
+                            Avg Time
+                          </Text>
+                        </View>
+                      </Flex.Item>
+                    </Flex>
+                  </View>
+                </Grid.Col>
+
+                <Grid.Col width={3}>
+                  <View
+                    as="div"
+                    borderWidth="small"
+                    borderRadius="medium"
+                    padding="medium"
+                    background="primary"
+                    textAlign="center"
+                  >
+                    <Flex direction="row" alignItems="center" justifyItems="center">
+                      <Flex.Item margin="0 small 0 0">
+                        <IconDocumentLine />
+                      </Flex.Item>
+                      <Flex.Item>
+                        <Text size="large" weight="bold">
+                          12
+                        </Text>
+                        <View as="div">
+                          <Text size="small">
+                            Total Items
+                          </Text>
+                        </View>
+                      </Flex.Item>
+                    </Flex>
+                  </View>
+                </Grid.Col>
+              </Grid.Row>
+            </Grid>
+          </View>
+
+          {/* Analysis Widgets */}
+          <View as="section">
+            <Flex direction="row" justifyItems="space-between" alignItems="center" margin="0 0 medium 0">
+              <Flex.Item>
+                <Heading level="h2">
+                  Analysis Modules
+                </Heading>
+              </Flex.Item>
+              <Flex.Item>
+                <Text size="small">
+                  Drag to reorder • Click to explore
+                </Text>
+              </Flex.Item>
+            </Flex>
+            
+            <Grid>
+              <Grid.Row>
+                {widgets.map((widget, index) => (
+                  <Grid.Col key={widget.id} width={6}>
+                    <View margin="0 0 medium 0">
+                      <EnhancedWidgetCard
+                        {...widget}
+                        onDragStart={handleDragStart}
+                        onDragEnd={handleDragEnd}
+                      />
+                    </View>
+                  </Grid.Col>
+                ))}
+              </Grid.Row>
+            </Grid>
+          </View>
         </View>
       </View>
-    </View>
-  );
+    );
+  } catch (error) {
+    console.error('Error rendering AssessmentOverview:', error);
+    return (
+      <View as="div" padding="large">
+        <Text>Error loading assessment overview. Check console for details.</Text>
+      </View>
+    );
+  }
 };
 
 export default AssessmentOverview;
