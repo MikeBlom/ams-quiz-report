@@ -295,8 +295,38 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
             </Flex>
             
             <Grid>
+              {/* First Row - First 2 widgets */}
               <Grid.Row>
-                {widgets.map((widget, index) => {
+                {widgets.slice(0, 2).map((widget) => {
+                  console.log('Rendering widget:', widget.id);
+                  try {
+                    return (
+                      <Grid.Col key={widget.id} width={6}>
+                        <View margin="0 0 medium 0">
+                          <EnhancedWidgetCard
+                            {...widget}
+                            onDragStart={handleDragStart}
+                            onDragEnd={handleDragEnd}
+                          />
+                        </View>
+                      </Grid.Col>
+                    );
+                  } catch (error) {
+                    console.error('Error rendering widget:', widget.id, error);
+                    return (
+                      <Grid.Col key={widget.id} width={6}>
+                        <View margin="0 0 medium 0" padding="medium" background="primary">
+                          <Text>Error loading widget: {widget.title}</Text>
+                        </View>
+                      </Grid.Col>
+                    );
+                  }
+                })}
+              </Grid.Row>
+              
+              {/* Second Row - Last 2 widgets */}
+              <Grid.Row>
+                {widgets.slice(2, 4).map((widget) => {
                   console.log('Rendering widget:', widget.id);
                   try {
                     return (
