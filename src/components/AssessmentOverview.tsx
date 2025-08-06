@@ -117,18 +117,19 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
   };
 
   const handleDragStart = (e: React.DragEvent, widgetId: string) => {
+    console.log('Drag start:', widgetId);
     e.dataTransfer.setData('text/plain', widgetId);
     setIsDragging(true);
   };
 
   const handleDragEnd = () => {
+    console.log('Drag end');
     setIsDragging(false);
   };
 
   try {
     return (
       <View as="div" minHeight="100vh" background="secondary">
-        {/* Header */}
         <View
           as="header"
           background="primary"
@@ -159,7 +160,6 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
         </View>
 
         <View maxWidth="1200px" margin="0 auto" padding="large">
-          {/* Simple Insights Section - Removed AssessmentInsights dependency */}
           <View as="section" margin="0 0 large 0">
             <Heading level="h2" margin="0 0 medium 0">
               Key Insights
@@ -167,7 +167,6 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
             <Text>Assessment insights will be displayed here.</Text>
           </View>
 
-          {/* Quick Stats */}
           <View as="section" margin="0 0 large 0">
             <Grid>
               <Grid.Row>
@@ -282,7 +281,6 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
             </Grid>
           </View>
 
-          {/* Analysis Widgets */}
           <View as="section">
             <Flex direction="row" justifyItems="space-between" alignItems="center" margin="0 0 medium 0">
               <Flex.Item>
@@ -299,17 +297,31 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
             
             <Grid>
               <Grid.Row>
-                {widgets.map((widget, index) => (
-                  <Grid.Col key={widget.id} width={6}>
-                    <View margin="0 0 medium 0">
-                      <EnhancedWidgetCard
-                        {...widget}
-                        onDragStart={handleDragStart}
-                        onDragEnd={handleDragEnd}
-                      />
-                    </View>
-                  </Grid.Col>
-                ))}
+                {widgets.map((widget, index) => {
+                  console.log('Rendering widget:', widget.id);
+                  try {
+                    return (
+                      <Grid.Col key={widget.id} width={6}>
+                        <View margin="0 0 medium 0">
+                          <EnhancedWidgetCard
+                            {...widget}
+                            onDragStart={handleDragStart}
+                            onDragEnd={handleDragEnd}
+                          />
+                        </View>
+                      </Grid.Col>
+                    );
+                  } catch (error) {
+                    console.error('Error rendering widget:', widget.id, error);
+                    return (
+                      <Grid.Col key={widget.id} width={6}>
+                        <View margin="0 0 medium 0" padding="medium" background="primary">
+                          <Text>Error loading widget: {widget.title}</Text>
+                        </View>
+                      </Grid.Col>
+                    );
+                  }
+                })}
               </Grid.Row>
             </Grid>
           </View>
@@ -319,8 +331,9 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
   } catch (error) {
     console.error('Error rendering AssessmentOverview:', error);
     return (
-      <View as="div" padding="large">
-        <Text>Error loading assessment overview. Check console for details.</Text>
+      <View as="div" padding="large" background="primary">
+        <Heading level="h2">Error Loading Assessment Overview</Heading>
+        <Text>Please check the console for more details.</Text>
       </View>
     );
   }
