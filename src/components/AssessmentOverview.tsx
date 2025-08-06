@@ -1,33 +1,35 @@
 
 import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { View } from '@instructure/ui-view';
+import { Text } from '@instructure/ui-text';
+import { Heading } from '@instructure/ui-heading';
+import { Button } from '@instructure/ui-buttons';
+import { Flex } from '@instructure/ui-flex';
+import { Grid } from '@instructure/ui-grid';
 import { 
-  Users, 
-  BookOpen, 
-  Target, 
-  PieChart, 
-  TrendingUp, 
-  Clock, 
-  ChevronRight,
-  GripVertical,
-  Settings,
-  CheckCircle
-} from 'lucide-react';
-import { Link } from 'react-router-dom';
+  IconUserLine, 
+  IconBookLine, 
+  IconTargetLine, 
+  IconAnalyticsLine, 
+  IconTrendUpwardLine, 
+  IconClockLine,
+  IconSettingsLine
+} from '@instructure/ui-icons';
+import AssessmentInsights from './AssessmentInsights';
+import EnhancedWidgetCard from './EnhancedWidgetCard';
 
 interface WidgetCardProps {
   id: string;
   title: string;
   description: string;
-  icon: React.ElementType;
+  icon: React.ComponentType<any>;
   value: string | number;
   subtitle: string;
   link: string;
-  trend?: {
-    direction: 'up' | 'down';
-    value: number;
+  sparkline?: {
+    values: number[];
+    trend: 'up' | 'down';
+    trendValue: number;
   };
   priority?: 'high' | 'medium' | 'low';
 }
@@ -44,43 +46,60 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
       id: 'students',
       title: 'Student Performance',
       description: 'Individual student analysis and performance breakdown',
-      icon: Users,
+      icon: IconUserLine,
       value: '26/28',
       subtitle: 'Students Completed',
       link: '/assessment/students',
-      trend: { direction: 'up', value: 5 },
+      sparkline: { 
+        values: [65, 72, 78, 82, 89, 85, 78], 
+        trend: 'up', 
+        trendValue: 5 
+      },
       priority: 'high'
     },
     {
       id: 'mastery',
       title: 'Mastery Distribution',
       description: 'Learning objectives mastery tracking across standards',
-      icon: PieChart,
+      icon: IconAnalyticsLine,
       value: '78%',
       subtitle: 'Average Mastery',
       link: '/assessment/mastery',
-      trend: { direction: 'up', value: 3 },
+      sparkline: { 
+        values: [68, 70, 75, 74, 78, 76, 78], 
+        trend: 'up', 
+        trendValue: 3 
+      },
       priority: 'high'
     },
     {
       id: 'items',
       title: 'Item Analysis',
       description: 'Question-level statistics and distractor patterns',
-      icon: BookOpen,
+      icon: IconBookLine,
       value: '12',
       subtitle: 'Total Items',
       link: '/assessment/items',
+      sparkline: { 
+        values: [85, 82, 78, 85, 88, 84, 82], 
+        trend: 'down', 
+        trendValue: 2 
+      },
       priority: 'medium'
     },
     {
       id: 'standards',
       title: 'Standards Analysis',
       description: 'Learning standards performance and outcomes',
-      icon: Target,
+      icon: IconTargetLine,
       value: '4',
       subtitle: 'Standards Assessed',
       link: '/assessment/standards',
-      trend: { direction: 'up', value: 2 },
+      sparkline: { 
+        values: [72, 75, 78, 74, 79, 82, 78], 
+        trend: 'up', 
+        trendValue: 2 
+      },
       priority: userRole === 'admin' ? 'high' : 'medium'
     }
   ]);
@@ -124,211 +143,190 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
     setIsDragging(false);
   };
 
-  const WidgetCard: React.FC<WidgetCardProps & { index: number }> = ({ 
-    title, 
-    description, 
-    icon: Icon, 
-    value, 
-    subtitle, 
-    link, 
-    trend,
-    priority,
-    index,
-    id
-  }) => (
-    <div
-      draggable
-      onDragStart={(e) => handleDragStart(e, id)}
-      onDragEnd={handleDragEnd}
-      onDragOver={handleDragOver}
-      onDrop={(e) => handleDrop(e, index)}
-      className={`group transition-all duration-200 ${isDragging ? 'opacity-50' : ''}`}
-    >
-      <Card className="h-full hover:shadow-lg transition-all duration-200 cursor-pointer border-l-4 border-l-primary/20 hover:border-l-primary">
-        <Link to={link} className="block h-full">
-          <CardHeader className="pb-3">
-            <div className="flex items-start justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
-                </div>
-                <div>
-                  <CardTitle className="text-lg">{title}</CardTitle>
-                  {priority === 'high' && (
-                    <Badge variant="secondary" className="mt-1 text-xs">
-                      Priority
-                    </Badge>
-                  )}
-                </div>
-              </div>
-              <div className="flex items-center space-x-2">
-                <GripVertical className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <p className="text-sm text-muted-foreground line-clamp-2">
-              {description}
-            </p>
-            <div className="flex items-end justify-between">
-              <div>
-                <p className="text-2xl font-bold text-primary">{value}</p>
-                <p className="text-sm text-muted-foreground">{subtitle}</p>
-              </div>
-              {trend && (
-                <div className={`flex items-center text-sm ${
-                  trend.direction === 'up' ? 'text-success' : 'text-destructive'
-                }`}>
-                  <TrendingUp className={`h-4 w-4 mr-1 ${
-                    trend.direction === 'down' ? 'rotate-180' : ''
-                  }`} />
-                  {trend.direction === 'up' ? '+' : '-'}{trend.value}%
-                </div>
-              )}
-            </div>
-          </CardContent>
-        </Link>
-      </Card>
-    </div>
-  );
-
   return (
-    <div className="min-h-screen bg-dashboard-bg">
+    <View as="div" minHeight="100vh" background="secondary">
       {/* Header */}
-      <div className="bg-card border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-2xl font-bold text-foreground">
-                  Assessment Overview
-                </h1>
-                <p className="text-muted-foreground mt-1">
-                  {assessmentData.title} • {assessmentData.date}
-                </p>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Button variant="outline" size="sm">
-                  <Settings className="h-4 w-4 mr-2" aria-hidden="true" />
-                  Customize
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <View
+        as="header"
+        background="primary"
+        borderWidth="0 0 small 0"
+        padding="medium"
+      >
+        <View maxWidth="1200px" margin="0 auto">
+          <Flex direction="row" justifyItems="space-between" alignItems="center">
+            <Flex.Item shouldGrow>
+              <Heading level="h1" margin="0 0 xx-small 0">
+                Assessment Overview
+              </Heading>
+              <Text color="secondary">
+                {assessmentData.title} • {assessmentData.date}
+              </Text>
+            </Flex.Item>
+            <Flex.Item>
+              <Button
+                color="secondary"
+                size="small"
+                renderIcon={IconSettingsLine}
+              >
+                Customize
+              </Button>
+            </Flex.Item>
+          </Flex>
+        </View>
+      </View>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <View maxWidth="1200px" margin="0 auto" padding="large">
+        {/* Insights Section - Now at the top */}
+        <AssessmentInsights userRole={userRole} />
+
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-2">
-                <Users className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="text-2xl font-bold">{assessmentData.completed}</p>
-                  <p className="text-xs text-muted-foreground">Completed</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-2">
-                <Target className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="text-2xl font-bold">{assessmentData.averageScore}%</p>
-                  <p className="text-xs text-muted-foreground">Avg Score</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+        <View as="section" margin="0 0 large 0">
+          <Grid>
+            <Grid.Row>
+              <Grid.Col width={3}>
+                <View
+                  as="div"
+                  borderWidth="small"
+                  borderRadius="medium"
+                  padding="medium"
+                  background="primary"
+                  textAlign="center"
+                >
+                  <Flex direction="row" alignItems="center" justifyItems="center">
+                    <Flex.Item margin="0 small 0 0">
+                      <IconUserLine color="brand" />
+                    </Flex.Item>
+                    <Flex.Item>
+                      <Text size="large" weight="bold" color="brand">
+                        {assessmentData.completed}
+                      </Text>
+                      <View as="div">
+                        <Text size="small" color="secondary">
+                          Completed
+                        </Text>
+                      </View>
+                    </Flex.Item>
+                  </Flex>
+                </View>
+              </Grid.Col>
+              
+              <Grid.Col width={3}>
+                <View
+                  as="div"
+                  borderWidth="small"
+                  borderRadius="medium"
+                  padding="medium"
+                  background="primary"
+                  textAlign="center"
+                >
+                  <Flex direction="row" alignItems="center" justifyItems="center">
+                    <Flex.Item margin="0 small 0 0">
+                      <IconTargetLine color="brand" />
+                    </Flex.Item>
+                    <Flex.Item>
+                      <Text size="large" weight="bold" color="brand">
+                        {assessmentData.averageScore}%
+                      </Text>
+                      <View as="div">
+                        <Text size="small" color="secondary">
+                          Avg Score
+                        </Text>
+                      </View>
+                    </Flex.Item>
+                  </Flex>
+                </View>
+              </Grid.Col>
 
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-2">
-                <Clock className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="text-2xl font-bold">{assessmentData.timeSpent}</p>
-                  <p className="text-xs text-muted-foreground">Avg Time</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              <Grid.Col width={3}>
+                <View
+                  as="div"
+                  borderWidth="small"
+                  borderRadius="medium"
+                  padding="medium"
+                  background="primary"
+                  textAlign="center"
+                >
+                  <Flex direction="row" alignItems="center" justifyItems="center">
+                    <Flex.Item margin="0 small 0 0">
+                      <IconClockLine color="brand" />
+                    </Flex.Item>
+                    <Flex.Item>
+                      <Text size="large" weight="bold" color="brand">
+                        {assessmentData.timeSpent}
+                      </Text>
+                      <View as="div">
+                        <Text size="small" color="secondary">
+                          Avg Time
+                        </Text>
+                      </View>
+                    </Flex.Item>
+                  </Flex>
+                </View>
+              </Grid.Col>
 
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-2">
-                <BookOpen className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="text-2xl font-bold">12</p>
-                  <p className="text-xs text-muted-foreground">Total Items</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+              <Grid.Col width={3}>
+                <View
+                  as="div"
+                  borderWidth="small"
+                  borderRadius="medium"
+                  padding="medium"
+                  background="primary"
+                  textAlign="center"
+                >
+                  <Flex direction="row" alignItems="center" justifyItems="center">
+                    <Flex.Item margin="0 small 0 0">
+                      <IconBookLine color="brand" />
+                    </Flex.Item>
+                    <Flex.Item>
+                      <Text size="large" weight="bold" color="brand">
+                        12
+                      </Text>
+                      <View as="div">
+                        <Text size="small" color="secondary">
+                          Total Items
+                        </Text>
+                      </View>
+                    </Flex.Item>
+                  </Flex>
+                </View>
+              </Grid.Col>
+            </Grid.Row>
+          </Grid>
+        </View>
 
         {/* Analysis Widgets */}
-        <div>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-foreground">
-              Analysis Modules
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Drag to reorder • Click to explore
-            </p>
-          </div>
+        <View as="section">
+          <Flex direction="row" justifyItems="space-between" alignItems="center" margin="0 0 medium 0">
+            <Flex.Item>
+              <Heading level="h2">
+                Analysis Modules
+              </Heading>
+            </Flex.Item>
+            <Flex.Item>
+              <Text size="small" color="secondary">
+                Drag to reorder • Click to explore
+              </Text>
+            </Flex.Item>
+          </Flex>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {widgets.map((widget, index) => (
-              <WidgetCard
-                key={widget.id}
-                {...widget}
-                index={index}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Role-based recommendations */}
-        {userRole === 'teacher' && (
-          <Card className="mt-8">
-            <CardHeader>
-              <CardTitle className="text-lg">Recommended Actions</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3 p-3 rounded-lg bg-blue-50 border border-blue-200">
-                  <Target className="h-5 w-5 text-blue-600" />
-                  <div>
-                    <p className="text-sm font-medium text-blue-900">
-                      Review struggling students in Graphing Functions
-                    </p>
-                    <p className="text-xs text-blue-700">
-                      6 students scored below 60% on this standard
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 p-3 rounded-lg bg-green-50 border border-green-200">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                  <div>
-                    <p className="text-sm font-medium text-green-900">
-                      Strong performance in Linear Equations
-                    </p>
-                    <p className="text-xs text-green-700">
-                      85% class average - consider advancing to complex problems
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-      </div>
-    </div>
+          <Grid>
+            <Grid.Row>
+              {widgets.map((widget, index) => (
+                <Grid.Col key={widget.id} width={6}>
+                  <View margin="0 0 medium 0">
+                    <EnhancedWidgetCard
+                      {...widget}
+                      onDragStart={handleDragStart}
+                      onDragEnd={handleDragEnd}
+                    />
+                  </View>
+                </Grid.Col>
+              ))}
+            </Grid.Row>
+          </Grid>
+        </View>
+      </View>
+    </View>
   );
 };
 
