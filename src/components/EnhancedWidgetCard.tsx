@@ -56,34 +56,34 @@ const EnhancedWidgetCard: React.FC<EnhancedWidgetCardProps> = ({
       const range = max - min || 1;
       
       const points = data.map((value, index) => {
-        const x = (index / (data.length - 1)) * 120;
-        const y = 40 - ((value - min) / range) * 30;
+        const x = (index / (data.length - 1)) * 150;
+        const y = 50 - ((value - min) / range) * 40;
         return `${x},${y}`;
       }).join(' ');
 
       return (
         <View as="div">
           <svg 
-            width="120" 
-            height="40" 
-            viewBox="0 0 120 40"
+            width="160" 
+            height="60" 
+            viewBox="0 0 160 60"
             style={{ display: 'block' }}
           >
             <polyline
               fill="none"
               stroke="#0074D9"
-              strokeWidth="2"
+              strokeWidth="3"
               points={points}
             />
             {data.map((value, index) => {
-              const x = (index / (data.length - 1)) * 120;
-              const y = 40 - ((value - min) / range) * 30;
+              const x = (index / (data.length - 1)) * 150;
+              const y = 50 - ((value - min) / range) * 40;
               return (
                 <circle
                   key={index}
                   cx={x}
                   cy={y}
-                  r="2"
+                  r="3"
                   fill="#0074D9"
                 />
               );
@@ -140,28 +140,11 @@ const EnhancedWidgetCard: React.FC<EnhancedWidgetCardProps> = ({
                     </View>
                   </Flex.Item>
                   <Flex.Item>
-                    <Flex direction="row" alignItems="center">
-                      <Heading level="h3" margin="0 small 0 0">
-                        {title}
-                      </Heading>
-                      {priority === 'high' && (
-                        <Badge
-                          type="notification"
-                          variant="primary"
-                        >
-                          <Text size="x-small">Priority</Text>
-                        </Badge>
-                      )}
-                    </Flex>
+                    <Heading level="h3" margin="0">
+                      {title}
+                    </Heading>
                   </Flex.Item>
                 </Flex>
-              </Flex.Item>
-              <Flex.Item>
-                {sparkline && (
-                  <View as="div" margin="0 0 0 small">
-                    {renderSparkline(sparkline.values)}
-                  </View>
-                )}
               </Flex.Item>
             </Flex>
           </Flex.Item>
@@ -176,30 +159,42 @@ const EnhancedWidgetCard: React.FC<EnhancedWidgetCardProps> = ({
             <Flex direction="row" justifyItems="space-between" alignItems="end">
               <Flex.Item>
                 <View as="div">
-                  <Text size="x-large" weight="bold" color="brand">
-                    {value}
-                  </Text>
-                  <View as="div" margin="xx-small 0 0 0">
-                    <Text size="small" color="secondary">
-                      {subtitle}
-                    </Text>
-                  </View>
+                  <Flex direction="row" alignItems="end">
+                    <Flex.Item margin="0 medium 0 0">
+                      <Text size="xx-large" weight="bold" color="brand">
+                        {value}
+                      </Text>
+                      <View as="div" margin="xx-small 0 0 0">
+                        <Text size="small" color="secondary">
+                          {subtitle}
+                        </Text>
+                      </View>
+                    </Flex.Item>
+                    {sparkline && (
+                      <Flex.Item>
+                        <View as="div" margin="0 0 small 0">
+                          {renderSparkline(sparkline.values)}
+                        </View>
+                      </Flex.Item>
+                    )}
+                  </Flex>
                 </View>
               </Flex.Item>
               {sparkline && (
                 <Flex.Item>
                   <Flex direction="row" alignItems="center">
                     {sparkline.trend === 'up' ? (
-                      <IconArrowUpLine color="success" size="x-small" />
+                      <IconArrowUpLine color="success" size="small" />
                     ) : (
-                      <IconArrowDownLine color="error" size="x-small" />
+                      <IconArrowDownLine color="warning" size="small" />
                     )}
                     <View as="div" margin="0 0 0 xx-small">
                       <Text
-                        size="small"
-                        color={sparkline.trend === 'up' ? 'success' : 'danger'}
+                        size="medium"
+                        weight="bold"
+                        color={sparkline.trend === 'up' ? 'success' : 'warning'}
                       >
-                        {sparkline.trend === 'up' ? '+' : '-'}{sparkline.trendValue}%
+                        {sparkline.trend === 'up' ? '+' : ''}{sparkline.trendValue}%
                       </Text>
                     </View>
                   </Flex>
