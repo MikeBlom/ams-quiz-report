@@ -175,15 +175,16 @@ const EnhancedWidgetCard: React.FC<EnhancedWidgetCardProps> = ({
                     {sparkline.trend === 'up' ? (
                       <IconArrowUpLine color="success" size="x-small" />
                     ) : (
-                      <IconArrowDownLine color="danger" size="x-small" />
+                      <IconArrowDownLine color="error" size="x-small" />
                     )}
-                    <Text
-                      size="small"
-                      color={sparkline.trend === 'up' ? 'success' : 'danger'}
-                      margin="0 0 0 xx-small"
-                    >
-                      {sparkline.trend === 'up' ? '+' : '-'}{sparkline.trendValue}%
-                    </Text>
+                    <View as="div" margin="0 0 0 xx-small">
+                      <Text
+                        size="small"
+                        color={sparkline.trend === 'up' ? 'success' : 'error'}
+                      >
+                        {sparkline.trend === 'up' ? '+' : '-'}{sparkline.trendValue}%
+                      </Text>
+                    </View>
                   </Flex>
                 </Flex.Item>
               )}
