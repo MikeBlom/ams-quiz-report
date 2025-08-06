@@ -183,7 +183,8 @@ const InsightCard: React.FC<InsightCardProps> = ({ insight, onAction }) => {
       borderWidth="small"
       height="100%" // Ensure equal height cards
     >
-      <Flex direction="row" justifyItems="space-between" alignItems="start" height="100%">
+      <Flex direction="column" height="100%">
+        {/* Top section with icon and content */}
         <Flex.Item shouldGrow>
           <Flex direction="row" alignItems="start">
             <Flex.Item margin="0 medium 0 0">
@@ -223,14 +224,18 @@ const InsightCard: React.FC<InsightCardProps> = ({ insight, onAction }) => {
             </Flex.Item>
           </Flex>
         </Flex.Item>
+        
+        {/* Bottom section with button */}
         <Flex.Item>
-          <Button
-            size="small"
-            color="primary"
-            onClick={() => onAction(insight.action, insight.title)}
-          >
-            {insight.action}
-          </Button>
+          <View as="div" textAlign="end">
+            <Button
+              size="small"
+              color="primary"
+              onClick={() => onAction(insight.action, insight.title)}
+            >
+              {insight.action}
+            </Button>
+          </View>
         </Flex.Item>
       </Flex>
     </View>
