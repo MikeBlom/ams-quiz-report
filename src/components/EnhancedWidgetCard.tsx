@@ -180,7 +180,7 @@ const EnhancedWidgetCard: React.FC<EnhancedWidgetCardProps> = ({
                     <View as="div" margin="0 0 0 xx-small">
                       <Text
                         size="small"
-                        color={sparkline.trend === 'up' ? 'success' : 'error'}
+                        color={sparkline.trend === 'up' ? 'success' : 'danger'}
                       >
                         {sparkline.trend === 'up' ? '+' : '-'}{sparkline.trendValue}%
                       </Text>
