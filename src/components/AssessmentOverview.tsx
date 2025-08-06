@@ -161,10 +161,6 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
 
         <View maxWidth="1200px" margin="0 auto" padding="large">
           <View as="section" margin="0 0 large 0">
-            <AssessmentInsights userRole={userRole} />
-          </View>
-
-          <View as="section" margin="0 0 large 0">
             <Grid>
               <Grid.Row>
                 <Grid.Col width={3}>
@@ -276,6 +272,11 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
                 </Grid.Col>
               </Grid.Row>
             </Grid>
+          </View>
+
+          {/* Assessment Insights */}
+          <View as="section" margin="0 0 large 0">
+            <AssessmentInsights userRole={userRole} />
           </View>
 
           <View as="section">

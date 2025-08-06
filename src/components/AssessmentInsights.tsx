@@ -48,51 +48,49 @@ const AssessmentInsights: React.FC<AssessmentInsightsProps> = ({
   };
 
   return (
-    <View as="section" margin="0 0 large 0">
+    <View as="div">
+      <Heading level="h2" margin="0 0 medium 0">
+        Assessment Insights & Recommendations
+      </Heading>
       <View as="div" margin="0 0 medium 0">
-        <Heading level="h2" margin="0 0 small 0">
-          Assessment Insights
-        </Heading>
         <Text size="small" color="secondary">
-          AI-powered analysis of your assessment results
+          AI-powered insights to guide your next instructional steps
         </Text>
       </View>
-
+      
       <View as="div">
         {insights.map((insight, index) => (
-          <Alert
-            key={index}
-            variant={insight.type as 'success' | 'warning' | 'info'}
-            margin="0 0 small 0"
-            renderCloseButtonLabel="Close"
-            onDismiss={() => console.log(`Dismissed insight: ${insight.title}`)}
-          >
-            <Flex direction="row" justifyItems="space-between" alignItems="start">
-              <Flex.Item shouldGrow>
-                <View as="div">
-                  <Text weight="bold" size="medium">
-                    {insight.title}
-                  </Text>
-                  <View as="div" margin="xx-small 0 0 0">
-                    <Text size="small">
-                      {insight.description}
-                    </Text>
-                  </View>
+          <View key={index} as="div" margin="0 0 medium 0">
+            <Flex direction="row" alignItems="start">
+              <Flex.Item margin="0 small 0 0">
+                <View
+                  as="div"
+                  background={insight.type === 'success' ? 'success' : 
+                             insight.type === 'warning' ? 'warning' : 'brand'}
+                  borderRadius="circle"
+                  padding="x-small"
+                  display="inline-block"
+                >
+                  <insight.actionIcon size="x-small" color="primary-inverse" />
                 </View>
               </Flex.Item>
-              <Flex.Item>
-                <Button
-                  size="small"
-                  color="primary"
-                  renderIcon={() => <insight.actionIcon />}
-                  onClick={() => handleAction(insight.action, insight.title)}
-                  margin="0 0 0 small"
-                >
-                  {insight.action}
-                </Button>
+              <Flex.Item shouldGrow>
+                <View as="div" margin="0 0 x-small 0">
+                  <Text weight="bold">
+                    {insight.title}
+                  </Text>
+                </View>
+                <View as="div" margin="0 0 x-small 0">
+                  <Text size="small" color="secondary">
+                    {insight.description}
+                  </Text>
+                </View>
+                <Text size="small" color="brand" weight="bold">
+                  Recommended: {insight.action}
+                </Text>
               </Flex.Item>
             </Flex>
-          </Alert>
+          </View>
         ))}
       </View>
     </View>
