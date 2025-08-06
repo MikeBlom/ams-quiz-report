@@ -140,18 +140,19 @@ const EnhancedWidgetCard: React.FC<EnhancedWidgetCardProps> = ({
                     </View>
                   </Flex.Item>
                   <Flex.Item>
-                    <Heading level="h3" margin="0 0 xx-small 0">
-                      {title}
-                    </Heading>
-                    {priority === 'high' && (
-                      <Badge
-                        type="notification"
-                        variant="primary"
-                        margin="0 0 0 small"
-                      >
-                        Priority
-                      </Badge>
-                    )}
+                    <Flex direction="row" alignItems="center">
+                      <Heading level="h3" margin="0 small 0 0">
+                        {title}
+                      </Heading>
+                      {priority === 'high' && (
+                        <Badge
+                          type="notification"
+                          variant="primary"
+                        >
+                          <Text size="x-small">Priority</Text>
+                        </Badge>
+                      )}
+                    </Flex>
                   </Flex.Item>
                 </Flex>
               </Flex.Item>
