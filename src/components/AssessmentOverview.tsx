@@ -159,7 +159,7 @@ const AssessmentOverview: React.FC<AssessmentOverviewProps> = ({
           </View>
         </View>
 
-        <View maxWidth="1200px" margin="0 auto" padding="80px large">{/* Changed padding */}
+        <View maxWidth="1200px" margin="0 auto" padding="80px">
           <View as="section" margin="0 0 large 0">
             <Grid>
               <Grid.Row>
