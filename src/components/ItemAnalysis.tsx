@@ -9,7 +9,7 @@ import { Grid } from '@instructure/ui-grid';
 import ItemAnalysisTable from './ItemAnalysisTable';
 
 const ItemAnalysis = () => {
-  const [showDetailedTable, setShowDetailedTable] = useState(false);
+  const [showDetailedTable, setShowDetailedTable] = useState(true); // Default to detailed table view
   
   // Enhanced mock data with additional fields for insights
   const itemData = [
@@ -297,7 +297,7 @@ const ItemAnalysis = () => {
               size="small"
               onClick={() => setShowDetailedTable(!showDetailedTable)}
             >
-              {showDetailedTable ? 'Show Summary' : 'Show Detailed View'}
+              {showDetailedTable ? 'Show Summary Cards' : 'Show Detailed Table'}
             </Button>
           </Flex.Item>
         </Flex>
