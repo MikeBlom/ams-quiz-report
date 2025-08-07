@@ -143,19 +143,19 @@
   }
 
   .performance-mastery {
-    @apply performance-indicator bg-green-100 text-green-800;
+    @apply performance-indicator bg-success/10 text-success border border-success/20;
   }
 
   .performance-near-mastery {
-    @apply performance-indicator bg-yellow-100 text-yellow-800;
+    @apply performance-indicator bg-warning/10 text-warning border border-warning/20;
   }
 
   .performance-below-mastery {
-    @apply performance-indicator bg-red-100 text-red-800;
+    @apply performance-indicator bg-destructive/10 text-destructive border border-destructive/20;
   }
 
   .performance-not-assessed {
-    @apply performance-indicator bg-gray-100 text-gray-600;
+    @apply performance-indicator bg-muted text-muted-foreground border border-border;
   }
 
   .data-table {
