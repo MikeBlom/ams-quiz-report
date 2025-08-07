@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronRight, User } from 'lucide-react';
 
 const StudentAnalysis = () => {
-  const [expandedStudent, setExpandedStudent] = useState<string | null>(null);
+  const [expandedStudent, setExpandedStudent] = useState<string | null>('1');
 
   // Mock student data
   const studentData = [
