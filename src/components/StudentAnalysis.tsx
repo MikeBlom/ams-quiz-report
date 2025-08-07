@@ -297,13 +297,13 @@ const StudentAnalysis = () => {
   const getMasteryBadge = (mastery: string) => {
     switch (mastery) {
       case 'mastery':
-        return <Badge className="performance-mastery">Mastery</Badge>;
+        return <Badge variant="outline" className="performance-mastery">Mastery</Badge>;
       case 'near-mastery':
-        return <Badge className="performance-near-mastery">Near Mastery</Badge>;
+        return <Badge variant="outline" className="performance-near-mastery">Near Mastery</Badge>;
       case 'below-mastery':
-        return <Badge className="performance-below-mastery">Below Mastery</Badge>;
+        return <Badge variant="outline" className="performance-below-mastery">Below Mastery</Badge>;
       default:
-        return <Badge className="performance-not-assessed">Not Assessed</Badge>;
+        return <Badge variant="outline" className="performance-not-assessed">Not Assessed</Badge>;
     }
   };
 
