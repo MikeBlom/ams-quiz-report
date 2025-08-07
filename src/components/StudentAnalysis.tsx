@@ -348,8 +348,8 @@ const StudentAnalysis = () => {
               <TableHead>Time Spent</TableHead>
               <TableHead>Attempts</TableHead>
               <TableHead>Overall Mastery</TableHead>
-              <TableHead>Algebraic Expressions</TableHead>
-              <TableHead>Linear Equations</TableHead>
+              <TableHead>Algebraic Expressions Mastery</TableHead>
+              <TableHead>Linear Equations Mastery</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
