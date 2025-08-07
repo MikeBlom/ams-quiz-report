@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ChevronDown, ChevronRight, User, Grid, List } from 'lucide-react';
+import { ChevronDown, ChevronRight, User, Grid, List, Download } from 'lucide-react';
 
 const StudentAnalysis = () => {
   const [expandedStudent, setExpandedStudent] = useState<string | null>('1');
@@ -23,7 +23,17 @@ const StudentAnalysis = () => {
       mastery: 'Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 9, total: 11, mastery: 'mastery' },
-        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' }
+        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' },
+        { name: 'Quadratic Functions', score: 8, total: 10, mastery: 'mastery' },
+        { name: 'Polynomials', score: 6, total: 9, mastery: 'near-mastery' },
+        { name: 'Rational Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Exponential Functions', score: 5, total: 7, mastery: 'below-mastery' },
+        { name: 'Logarithmic Functions', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Trigonometric Functions', score: 8, total: 10, mastery: 'mastery' },
+        { name: 'Sequences and Series', score: 7, total: 9, mastery: 'near-mastery' },
+        { name: 'Systems of Equations', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Inequalities', score: 6, total: 8, mastery: 'below-mastery' },
+        { name: 'Matrices', score: 8, total: 9, mastery: 'mastery' }
       ]
     },
     {
@@ -37,7 +47,17 @@ const StudentAnalysis = () => {
       mastery: 'Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 10, total: 11, mastery: 'mastery' },
-        { name: 'Linear Equations', score: 9, total: 11, mastery: 'mastery' }
+        { name: 'Linear Equations', score: 9, total: 11, mastery: 'mastery' },
+        { name: 'Quadratic Functions', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Polynomials', score: 8, total: 9, mastery: 'mastery' },
+        { name: 'Rational Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Exponential Functions', score: 6, total: 7, mastery: 'mastery' },
+        { name: 'Logarithmic Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Trigonometric Functions', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Sequences and Series', score: 8, total: 9, mastery: 'mastery' },
+        { name: 'Systems of Equations', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Inequalities', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Matrices', score: 8, total: 9, mastery: 'mastery' }
       ]
     },
     {
@@ -51,7 +71,17 @@ const StudentAnalysis = () => {
       mastery: 'Near Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 6, total: 11, mastery: 'below-mastery' },
-        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' }
+        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' },
+        { name: 'Quadratic Functions', score: 5, total: 10, mastery: 'below-mastery' },
+        { name: 'Polynomials', score: 6, total: 9, mastery: 'near-mastery' },
+        { name: 'Rational Functions', score: 4, total: 8, mastery: 'below-mastery' },
+        { name: 'Exponential Functions', score: 3, total: 7, mastery: 'below-mastery' },
+        { name: 'Logarithmic Functions', score: 5, total: 8, mastery: 'below-mastery' },
+        { name: 'Trigonometric Functions', score: 6, total: 10, mastery: 'below-mastery' },
+        { name: 'Sequences and Series', score: 5, total: 9, mastery: 'below-mastery' },
+        { name: 'Systems of Equations', score: 7, total: 10, mastery: 'near-mastery' },
+        { name: 'Inequalities', score: 4, total: 8, mastery: 'below-mastery' },
+        { name: 'Matrices', score: 6, total: 9, mastery: 'near-mastery' }
       ]
     },
     {
@@ -65,7 +95,17 @@ const StudentAnalysis = () => {
       mastery: 'Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 11, total: 11, mastery: 'mastery' },
-        { name: 'Linear Equations', score: 10, total: 11, mastery: 'mastery' }
+        { name: 'Linear Equations', score: 10, total: 11, mastery: 'mastery' },
+        { name: 'Quadratic Functions', score: 10, total: 10, mastery: 'mastery' },
+        { name: 'Polynomials', score: 9, total: 9, mastery: 'mastery' },
+        { name: 'Rational Functions', score: 8, total: 8, mastery: 'mastery' },
+        { name: 'Exponential Functions', score: 7, total: 7, mastery: 'mastery' },
+        { name: 'Logarithmic Functions', score: 8, total: 8, mastery: 'mastery' },
+        { name: 'Trigonometric Functions', score: 10, total: 10, mastery: 'mastery' },
+        { name: 'Sequences and Series', score: 9, total: 9, mastery: 'mastery' },
+        { name: 'Systems of Equations', score: 10, total: 10, mastery: 'mastery' },
+        { name: 'Inequalities', score: 8, total: 8, mastery: 'mastery' },
+        { name: 'Matrices', score: 9, total: 9, mastery: 'mastery' }
       ]
     },
     {
@@ -79,7 +119,17 @@ const StudentAnalysis = () => {
       mastery: 'Near Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 8, total: 11, mastery: 'near-mastery' },
-        { name: 'Linear Equations', score: 8, total: 11, mastery: 'near-mastery' }
+        { name: 'Linear Equations', score: 8, total: 11, mastery: 'near-mastery' },
+        { name: 'Quadratic Functions', score: 7, total: 10, mastery: 'near-mastery' },
+        { name: 'Polynomials', score: 7, total: 9, mastery: 'near-mastery' },
+        { name: 'Rational Functions', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Exponential Functions', score: 5, total: 7, mastery: 'near-mastery' },
+        { name: 'Logarithmic Functions', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Trigonometric Functions', score: 8, total: 10, mastery: 'near-mastery' },
+        { name: 'Sequences and Series', score: 7, total: 9, mastery: 'near-mastery' },
+        { name: 'Systems of Equations', score: 8, total: 10, mastery: 'near-mastery' },
+        { name: 'Inequalities', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Matrices', score: 7, total: 9, mastery: 'near-mastery' }
       ]
     },
     {
@@ -93,7 +143,17 @@ const StudentAnalysis = () => {
       mastery: 'Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 9, total: 11, mastery: 'mastery' },
-        { name: 'Linear Equations', score: 8, total: 11, mastery: 'near-mastery' }
+        { name: 'Linear Equations', score: 8, total: 11, mastery: 'near-mastery' },
+        { name: 'Quadratic Functions', score: 8, total: 10, mastery: 'mastery' },
+        { name: 'Polynomials', score: 8, total: 9, mastery: 'mastery' },
+        { name: 'Rational Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Exponential Functions', score: 6, total: 7, mastery: 'mastery' },
+        { name: 'Logarithmic Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Trigonometric Functions', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Sequences and Series', score: 8, total: 9, mastery: 'mastery' },
+        { name: 'Systems of Equations', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Inequalities', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Matrices', score: 8, total: 9, mastery: 'mastery' }
       ]
     },
     {
@@ -107,7 +167,17 @@ const StudentAnalysis = () => {
       mastery: 'Near Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 7, total: 11, mastery: 'near-mastery' },
-        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' }
+        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' },
+        { name: 'Quadratic Functions', score: 6, total: 10, mastery: 'below-mastery' },
+        { name: 'Polynomials', score: 6, total: 9, mastery: 'near-mastery' },
+        { name: 'Rational Functions', score: 5, total: 8, mastery: 'below-mastery' },
+        { name: 'Exponential Functions', score: 4, total: 7, mastery: 'below-mastery' },
+        { name: 'Logarithmic Functions', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Trigonometric Functions', score: 7, total: 10, mastery: 'near-mastery' },
+        { name: 'Sequences and Series', score: 6, total: 9, mastery: 'near-mastery' },
+        { name: 'Systems of Equations', score: 8, total: 10, mastery: 'near-mastery' },
+        { name: 'Inequalities', score: 5, total: 8, mastery: 'below-mastery' },
+        { name: 'Matrices', score: 7, total: 9, mastery: 'near-mastery' }
       ]
     },
     {
@@ -121,7 +191,17 @@ const StudentAnalysis = () => {
       mastery: 'Below Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 5, total: 11, mastery: 'below-mastery' },
-        { name: 'Linear Equations', score: 6, total: 11, mastery: 'below-mastery' }
+        { name: 'Linear Equations', score: 6, total: 11, mastery: 'below-mastery' },
+        { name: 'Quadratic Functions', score: 4, total: 10, mastery: 'below-mastery' },
+        { name: 'Polynomials', score: 5, total: 9, mastery: 'below-mastery' },
+        { name: 'Rational Functions', score: 3, total: 8, mastery: 'below-mastery' },
+        { name: 'Exponential Functions', score: 3, total: 7, mastery: 'below-mastery' },
+        { name: 'Logarithmic Functions', score: 4, total: 8, mastery: 'below-mastery' },
+        { name: 'Trigonometric Functions', score: 5, total: 10, mastery: 'below-mastery' },
+        { name: 'Sequences and Series', score: 4, total: 9, mastery: 'below-mastery' },
+        { name: 'Systems of Equations', score: 6, total: 10, mastery: 'below-mastery' },
+        { name: 'Inequalities', score: 3, total: 8, mastery: 'below-mastery' },
+        { name: 'Matrices', score: 5, total: 9, mastery: 'below-mastery' }
       ]
     },
     {
@@ -135,7 +215,17 @@ const StudentAnalysis = () => {
       mastery: 'Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 10, total: 11, mastery: 'mastery' },
-        { name: 'Linear Equations', score: 9, total: 11, mastery: 'mastery' }
+        { name: 'Linear Equations', score: 9, total: 11, mastery: 'mastery' },
+        { name: 'Quadratic Functions', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Polynomials', score: 8, total: 9, mastery: 'mastery' },
+        { name: 'Rational Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Exponential Functions', score: 6, total: 7, mastery: 'mastery' },
+        { name: 'Logarithmic Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Trigonometric Functions', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Sequences and Series', score: 8, total: 9, mastery: 'mastery' },
+        { name: 'Systems of Equations', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Inequalities', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Matrices', score: 8, total: 9, mastery: 'mastery' }
       ]
     },
     {
@@ -149,7 +239,17 @@ const StudentAnalysis = () => {
       mastery: 'Near Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 8, total: 11, mastery: 'near-mastery' },
-        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' }
+        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' },
+        { name: 'Quadratic Functions', score: 7, total: 10, mastery: 'near-mastery' },
+        { name: 'Polynomials', score: 7, total: 9, mastery: 'near-mastery' },
+        { name: 'Rational Functions', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Exponential Functions', score: 5, total: 7, mastery: 'near-mastery' },
+        { name: 'Logarithmic Functions', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Trigonometric Functions', score: 8, total: 10, mastery: 'near-mastery' },
+        { name: 'Sequences and Series', score: 7, total: 9, mastery: 'near-mastery' },
+        { name: 'Systems of Equations', score: 8, total: 10, mastery: 'near-mastery' },
+        { name: 'Inequalities', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Matrices', score: 7, total: 9, mastery: 'near-mastery' }
       ]
     },
     {
@@ -163,7 +263,17 @@ const StudentAnalysis = () => {
       mastery: 'Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 9, total: 11, mastery: 'mastery' },
-        { name: 'Linear Equations', score: 9, total: 11, mastery: 'mastery' }
+        { name: 'Linear Equations', score: 9, total: 11, mastery: 'mastery' },
+        { name: 'Quadratic Functions', score: 8, total: 10, mastery: 'mastery' },
+        { name: 'Polynomials', score: 8, total: 9, mastery: 'mastery' },
+        { name: 'Rational Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Exponential Functions', score: 6, total: 7, mastery: 'mastery' },
+        { name: 'Logarithmic Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Trigonometric Functions', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Sequences and Series', score: 8, total: 9, mastery: 'mastery' },
+        { name: 'Systems of Equations', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Inequalities', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Matrices', score: 8, total: 9, mastery: 'mastery' }
       ]
     },
     {
@@ -177,7 +287,17 @@ const StudentAnalysis = () => {
       mastery: 'Below Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 6, total: 11, mastery: 'below-mastery' },
-        { name: 'Linear Equations', score: 6, total: 11, mastery: 'below-mastery' }
+        { name: 'Linear Equations', score: 6, total: 11, mastery: 'below-mastery' },
+        { name: 'Quadratic Functions', score: 5, total: 10, mastery: 'below-mastery' },
+        { name: 'Polynomials', score: 6, total: 9, mastery: 'near-mastery' },
+        { name: 'Rational Functions', score: 4, total: 8, mastery: 'below-mastery' },
+        { name: 'Exponential Functions', score: 4, total: 7, mastery: 'below-mastery' },
+        { name: 'Logarithmic Functions', score: 5, total: 8, mastery: 'below-mastery' },
+        { name: 'Trigonometric Functions', score: 6, total: 10, mastery: 'below-mastery' },
+        { name: 'Sequences and Series', score: 5, total: 9, mastery: 'below-mastery' },
+        { name: 'Systems of Equations', score: 7, total: 10, mastery: 'near-mastery' },
+        { name: 'Inequalities', score: 4, total: 8, mastery: 'below-mastery' },
+        { name: 'Matrices', score: 6, total: 9, mastery: 'near-mastery' }
       ]
     },
     {
@@ -191,7 +311,17 @@ const StudentAnalysis = () => {
       mastery: 'Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 10, total: 11, mastery: 'mastery' },
-        { name: 'Linear Equations', score: 10, total: 11, mastery: 'mastery' }
+        { name: 'Linear Equations', score: 10, total: 11, mastery: 'mastery' },
+        { name: 'Quadratic Functions', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Polynomials', score: 8, total: 9, mastery: 'mastery' },
+        { name: 'Rational Functions', score: 8, total: 8, mastery: 'mastery' },
+        { name: 'Exponential Functions', score: 7, total: 7, mastery: 'mastery' },
+        { name: 'Logarithmic Functions', score: 8, total: 8, mastery: 'mastery' },
+        { name: 'Trigonometric Functions', score: 10, total: 10, mastery: 'mastery' },
+        { name: 'Sequences and Series', score: 9, total: 9, mastery: 'mastery' },
+        { name: 'Systems of Equations', score: 10, total: 10, mastery: 'mastery' },
+        { name: 'Inequalities', score: 8, total: 8, mastery: 'mastery' },
+        { name: 'Matrices', score: 9, total: 9, mastery: 'mastery' }
       ]
     },
     {
@@ -205,7 +335,17 @@ const StudentAnalysis = () => {
       mastery: 'Near Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 7, total: 11, mastery: 'near-mastery' },
-        { name: 'Linear Equations', score: 6, total: 11, mastery: 'below-mastery' }
+        { name: 'Linear Equations', score: 6, total: 11, mastery: 'below-mastery' },
+        { name: 'Quadratic Functions', score: 6, total: 10, mastery: 'below-mastery' },
+        { name: 'Polynomials', score: 6, total: 9, mastery: 'near-mastery' },
+        { name: 'Rational Functions', score: 5, total: 8, mastery: 'below-mastery' },
+        { name: 'Exponential Functions', score: 4, total: 7, mastery: 'below-mastery' },
+        { name: 'Logarithmic Functions', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Trigonometric Functions', score: 7, total: 10, mastery: 'near-mastery' },
+        { name: 'Sequences and Series', score: 6, total: 9, mastery: 'near-mastery' },
+        { name: 'Systems of Equations', score: 7, total: 10, mastery: 'near-mastery' },
+        { name: 'Inequalities', score: 5, total: 8, mastery: 'below-mastery' },
+        { name: 'Matrices', score: 6, total: 9, mastery: 'near-mastery' }
       ]
     },
     {
@@ -219,7 +359,17 @@ const StudentAnalysis = () => {
       mastery: 'Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 9, total: 11, mastery: 'mastery' },
-        { name: 'Linear Equations', score: 8, total: 11, mastery: 'near-mastery' }
+        { name: 'Linear Equations', score: 8, total: 11, mastery: 'near-mastery' },
+        { name: 'Quadratic Functions', score: 8, total: 10, mastery: 'mastery' },
+        { name: 'Polynomials', score: 7, total: 9, mastery: 'near-mastery' },
+        { name: 'Rational Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Exponential Functions', score: 6, total: 7, mastery: 'mastery' },
+        { name: 'Logarithmic Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Trigonometric Functions', score: 8, total: 10, mastery: 'mastery' },
+        { name: 'Sequences and Series', score: 7, total: 9, mastery: 'near-mastery' },
+        { name: 'Systems of Equations', score: 8, total: 10, mastery: 'mastery' },
+        { name: 'Inequalities', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Matrices', score: 7, total: 9, mastery: 'near-mastery' }
       ]
     },
     {
@@ -233,7 +383,17 @@ const StudentAnalysis = () => {
       mastery: 'Near Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 8, total: 11, mastery: 'near-mastery' },
-        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' }
+        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' },
+        { name: 'Quadratic Functions', score: 7, total: 10, mastery: 'near-mastery' },
+        { name: 'Polynomials', score: 6, total: 9, mastery: 'near-mastery' },
+        { name: 'Rational Functions', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Exponential Functions', score: 5, total: 7, mastery: 'near-mastery' },
+        { name: 'Logarithmic Functions', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Trigonometric Functions', score: 7, total: 10, mastery: 'near-mastery' },
+        { name: 'Sequences and Series', score: 6, total: 9, mastery: 'near-mastery' },
+        { name: 'Systems of Equations', score: 8, total: 10, mastery: 'near-mastery' },
+        { name: 'Inequalities', score: 5, total: 8, mastery: 'below-mastery' },
+        { name: 'Matrices', score: 7, total: 9, mastery: 'near-mastery' }
       ]
     },
     {
@@ -247,7 +407,17 @@ const StudentAnalysis = () => {
       mastery: 'Below Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 5, total: 11, mastery: 'below-mastery' },
-        { name: 'Linear Equations', score: 5, total: 11, mastery: 'below-mastery' }
+        { name: 'Linear Equations', score: 5, total: 11, mastery: 'below-mastery' },
+        { name: 'Quadratic Functions', score: 4, total: 10, mastery: 'below-mastery' },
+        { name: 'Polynomials', score: 5, total: 9, mastery: 'below-mastery' },
+        { name: 'Rational Functions', score: 3, total: 8, mastery: 'below-mastery' },
+        { name: 'Exponential Functions', score: 3, total: 7, mastery: 'below-mastery' },
+        { name: 'Logarithmic Functions', score: 4, total: 8, mastery: 'below-mastery' },
+        { name: 'Trigonometric Functions', score: 5, total: 10, mastery: 'below-mastery' },
+        { name: 'Sequences and Series', score: 4, total: 9, mastery: 'below-mastery' },
+        { name: 'Systems of Equations', score: 6, total: 10, mastery: 'below-mastery' },
+        { name: 'Inequalities', score: 3, total: 8, mastery: 'below-mastery' },
+        { name: 'Matrices', score: 5, total: 9, mastery: 'below-mastery' }
       ]
     },
     {
@@ -261,7 +431,17 @@ const StudentAnalysis = () => {
       mastery: 'Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 9, total: 11, mastery: 'mastery' },
-        { name: 'Linear Equations', score: 9, total: 11, mastery: 'mastery' }
+        { name: 'Linear Equations', score: 9, total: 11, mastery: 'mastery' },
+        { name: 'Quadratic Functions', score: 8, total: 10, mastery: 'mastery' },
+        { name: 'Polynomials', score: 8, total: 9, mastery: 'mastery' },
+        { name: 'Rational Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Exponential Functions', score: 6, total: 7, mastery: 'mastery' },
+        { name: 'Logarithmic Functions', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Trigonometric Functions', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Sequences and Series', score: 8, total: 9, mastery: 'mastery' },
+        { name: 'Systems of Equations', score: 9, total: 10, mastery: 'mastery' },
+        { name: 'Inequalities', score: 7, total: 8, mastery: 'mastery' },
+        { name: 'Matrices', score: 8, total: 9, mastery: 'mastery' }
       ]
     },
     {
@@ -275,7 +455,17 @@ const StudentAnalysis = () => {
       mastery: 'Near Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 8, total: 11, mastery: 'near-mastery' },
-        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' }
+        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' },
+        { name: 'Quadratic Functions', score: 7, total: 10, mastery: 'near-mastery' },
+        { name: 'Polynomials', score: 7, total: 9, mastery: 'near-mastery' },
+        { name: 'Rational Functions', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Exponential Functions', score: 5, total: 7, mastery: 'near-mastery' },
+        { name: 'Logarithmic Functions', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Trigonometric Functions', score: 8, total: 10, mastery: 'near-mastery' },
+        { name: 'Sequences and Series', score: 7, total: 9, mastery: 'near-mastery' },
+        { name: 'Systems of Equations', score: 8, total: 10, mastery: 'near-mastery' },
+        { name: 'Inequalities', score: 6, total: 8, mastery: 'near-mastery' },
+        { name: 'Matrices', score: 7, total: 9, mastery: 'near-mastery' }
       ]
     },
     {
@@ -289,7 +479,17 @@ const StudentAnalysis = () => {
       mastery: 'Mastery',
       standards: [
         { name: 'Algebraic Expressions', score: 11, total: 11, mastery: 'mastery' },
-        { name: 'Linear Equations', score: 10, total: 11, mastery: 'mastery' }
+        { name: 'Linear Equations', score: 10, total: 11, mastery: 'mastery' },
+        { name: 'Quadratic Functions', score: 10, total: 10, mastery: 'mastery' },
+        { name: 'Polynomials', score: 9, total: 9, mastery: 'mastery' },
+        { name: 'Rational Functions', score: 8, total: 8, mastery: 'mastery' },
+        { name: 'Exponential Functions', score: 7, total: 7, mastery: 'mastery' },
+        { name: 'Logarithmic Functions', score: 8, total: 8, mastery: 'mastery' },
+        { name: 'Trigonometric Functions', score: 10, total: 10, mastery: 'mastery' },
+        { name: 'Sequences and Series', score: 9, total: 9, mastery: 'mastery' },
+        { name: 'Systems of Equations', score: 10, total: 10, mastery: 'mastery' },
+        { name: 'Inequalities', score: 8, total: 8, mastery: 'mastery' },
+        { name: 'Matrices', score: 9, total: 9, mastery: 'mastery' }
       ]
     }
   ];
@@ -311,6 +511,50 @@ const StudentAnalysis = () => {
     setExpandedStudent(expandedStudent === studentId ? null : studentId);
   };
 
+  const exportToCSV = () => {
+    const headers = [
+      'Student Name',
+      'Score (%)',
+      'Time Spent',
+      'Attempts',
+      'Overall Mastery',
+      'Algebraic Expressions',
+      'Linear Equations',
+      'Quadratic Functions',
+      'Polynomials',
+      'Rational Functions',
+      'Exponential Functions',
+      'Logarithmic Functions',
+      'Trigonometric Functions',
+      'Sequences and Series',
+      'Systems of Equations',
+      'Inequalities',
+      'Matrices'
+    ];
+
+    const csvContent = [
+      headers.join(','),
+      ...studentData.map(student => [
+        student.name,
+        student.score,
+        student.timeSpent,
+        student.attempts,
+        student.mastery,
+        ...student.standards.map(standard => `${standard.score}/${standard.total} (${standard.mastery})`)
+      ].join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'student_performance_analysis.csv');
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const renderTableView = () => (
     <Card>
       <CardHeader>
@@ -320,6 +564,14 @@ const StudentAnalysis = () => {
             <span>Student Performance Analysis</span>
           </div>
           <div className="flex space-x-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={exportToCSV}
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Export CSV
+            </Button>
             <Button
               variant={viewMode === 'cards' ? 'default' : 'outline'}
               size="sm"
@@ -340,55 +592,63 @@ const StudentAnalysis = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Student</TableHead>
-              <TableHead>Score</TableHead>
-              <TableHead>Time Spent</TableHead>
-              <TableHead>Attempts</TableHead>
-              <TableHead>Overall Mastery</TableHead>
-              <TableHead>Algebraic Expressions Mastery</TableHead>
-              <TableHead>Linear Equations Mastery</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {studentData.map((student) => (
-              <TableRow key={student.id}>
-                <TableCell>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                      <span className="text-xs font-medium text-primary">
-                        {student.initials}
-                      </span>
-                    </div>
-                    <span className="font-medium">{student.name}</span>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <span className="font-medium">{student.score}%</span>
-                </TableCell>
-                <TableCell>{student.timeSpent}</TableCell>
-                <TableCell>{student.attempts}</TableCell>
-                <TableCell>
-                  {getMasteryBadge(student.mastery.toLowerCase().replace(' ', '-'))}
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm">{student.standards[0].score}/{student.standards[0].total}</span>
-                    {getMasteryBadge(student.standards[0].mastery)}
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm">{student.standards[1].score}/{student.standards[1].total}</span>
-                    {getMasteryBadge(student.standards[1].mastery)}
-                  </div>
-                </TableCell>
+        <div className="overflow-x-auto">
+          <Table className="min-w-[1400px]">
+            <TableHeader>
+              <TableRow>
+                <TableHead className="min-w-[200px]">Student</TableHead>
+                <TableHead className="min-w-[80px]">Score</TableHead>
+                <TableHead className="min-w-[100px]">Time Spent</TableHead>
+                <TableHead className="min-w-[80px]">Attempts</TableHead>
+                <TableHead className="min-w-[120px]">Overall Mastery</TableHead>
+                <TableHead className="min-w-[150px] bg-muted/30 font-semibold">Algebraic Expressions</TableHead>
+                <TableHead className="min-w-[140px] bg-muted/30 font-semibold">Linear Equations</TableHead>
+                <TableHead className="min-w-[140px] bg-muted/30 font-semibold">Quadratic Functions</TableHead>
+                <TableHead className="min-w-[120px] bg-muted/30 font-semibold">Polynomials</TableHead>
+                <TableHead className="min-w-[140px] bg-muted/30 font-semibold">Rational Functions</TableHead>
+                <TableHead className="min-w-[160px] bg-muted/30 font-semibold">Exponential Functions</TableHead>
+                <TableHead className="min-w-[160px] bg-muted/30 font-semibold">Logarithmic Functions</TableHead>
+                <TableHead className="min-w-[180px] bg-muted/30 font-semibold">Trigonometric Functions</TableHead>
+                <TableHead className="min-w-[150px] bg-muted/30 font-semibold">Sequences and Series</TableHead>
+                <TableHead className="min-w-[150px] bg-muted/30 font-semibold">Systems of Equations</TableHead>
+                <TableHead className="min-w-[120px] bg-muted/30 font-semibold">Inequalities</TableHead>
+                <TableHead className="min-w-[100px] bg-muted/30 font-semibold">Matrices</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {studentData.map((student) => (
+                <TableRow key={student.id}>
+                  <TableCell className="min-w-[200px]">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                        <span className="text-xs font-medium text-primary">
+                          {student.initials}
+                        </span>
+                      </div>
+                      <span className="font-medium">{student.name}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell className="min-w-[80px]">
+                    <span className="font-medium">{student.score}%</span>
+                  </TableCell>
+                  <TableCell className="min-w-[100px]">{student.timeSpent}</TableCell>
+                  <TableCell className="min-w-[80px]">{student.attempts}</TableCell>
+                  <TableCell className="min-w-[120px]">
+                    {getMasteryBadge(student.mastery.toLowerCase().replace(' ', '-'))}
+                  </TableCell>
+                  {student.standards.map((standard, index) => (
+                    <TableCell key={index} className={`min-w-[120px] bg-muted/10 ${index < 2 ? 'min-w-[150px]' : ''}`}>
+                      <div className="flex flex-col space-y-1">
+                        <span className="text-xs text-muted-foreground">{standard.score}/{standard.total}</span>
+                        {getMasteryBadge(standard.mastery)}
+                      </div>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </CardContent>
     </Card>
   );
