@@ -8,7 +8,7 @@ import { ChevronDown, ChevronRight, User, Grid, List } from 'lucide-react';
 
 const StudentAnalysis = () => {
   const [expandedStudent, setExpandedStudent] = useState<string | null>('1');
-  const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
+  const [viewMode, setViewMode] = useState<'cards' | 'table'>('table');
 
   // Mock student data
   const studentData = [
