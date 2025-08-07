@@ -274,57 +274,6 @@ const Index = () => {
           })}
         </div>
 
-        {/* Performance Overview Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Mastery Distribution Pie Chart */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Overall Mastery Distribution</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
-                    data={masteryOverview}
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    dataKey="value"
-                    label={({ name, value }) => `${name}: ${value}`}
-                  >
-                    {masteryOverview.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-
-          {/* Standards Performance Bar Chart */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Standards Performance</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={standardsPerformance}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis 
-                    dataKey="standard" 
-                    tick={{ fontSize: 12 }}
-                    interval={0}
-                  />
-                  <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="score" fill="hsl(var(--primary))" />
-                </BarChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        </div>
-
         {/* Performance Insights */}
         <Card>
           <CardHeader>
