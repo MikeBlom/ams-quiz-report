@@ -218,13 +218,14 @@ const MasteryDistributionPage = () => {
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={400}>
-              <BarChart data={standardsMastery}>
+              <BarChart data={standardsMastery} margin={{ bottom: 60 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis 
                   dataKey="standard" 
-                  angle={-45}
-                  textAnchor="end"
+                  interval={0}
                   height={80}
+                  tick={{ fontSize: 12 }}
+                  width={60}
                 />
                 <YAxis />
                 <Tooltip />
