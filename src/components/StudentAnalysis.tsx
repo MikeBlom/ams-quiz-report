@@ -51,6 +51,244 @@ const StudentAnalysis = () => {
         { name: 'Algebraic Expressions', score: 6, total: 11, mastery: 'below-mastery' },
         { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' }
       ]
+    },
+    {
+      id: '4',
+      name: 'Alex Thompson',
+      initials: 'AT',
+      score: 95,
+      timeSpent: '00:19:33',
+      attempts: 1,
+      status: 'Completed',
+      mastery: 'Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 11, total: 11, mastery: 'mastery' },
+        { name: 'Linear Equations', score: 10, total: 11, mastery: 'mastery' }
+      ]
+    },
+    {
+      id: '5',
+      name: 'Sarah Chen',
+      initials: 'SC',
+      score: 78,
+      timeSpent: '00:26:47',
+      attempts: 1,
+      status: 'Completed',
+      mastery: 'Near Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 8, total: 11, mastery: 'near-mastery' },
+        { name: 'Linear Equations', score: 8, total: 11, mastery: 'near-mastery' }
+      ]
+    },
+    {
+      id: '6',
+      name: 'Michael Rodriguez',
+      initials: 'MR',
+      score: 84,
+      timeSpent: '00:32:15',
+      attempts: 2,
+      status: 'Completed',
+      mastery: 'Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 9, total: 11, mastery: 'mastery' },
+        { name: 'Linear Equations', score: 8, total: 11, mastery: 'near-mastery' }
+      ]
+    },
+    {
+      id: '7',
+      name: 'Jessica Williams',
+      initials: 'JW',
+      score: 71,
+      timeSpent: '00:29:52',
+      attempts: 1,
+      status: 'Completed',
+      mastery: 'Near Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 7, total: 11, mastery: 'near-mastery' },
+        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' }
+      ]
+    },
+    {
+      id: '8',
+      name: 'David Kim',
+      initials: 'DK',
+      score: 58,
+      timeSpent: '00:35:41',
+      attempts: 3,
+      status: 'Completed',
+      mastery: 'Below Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 5, total: 11, mastery: 'below-mastery' },
+        { name: 'Linear Equations', score: 6, total: 11, mastery: 'below-mastery' }
+      ]
+    },
+    {
+      id: '9',
+      name: 'Emma Davis',
+      initials: 'ED',
+      score: 91,
+      timeSpent: '00:24:18',
+      attempts: 1,
+      status: 'Completed',
+      mastery: 'Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 10, total: 11, mastery: 'mastery' },
+        { name: 'Linear Equations', score: 9, total: 11, mastery: 'mastery' }
+      ]
+    },
+    {
+      id: '10',
+      name: 'Ryan Martinez',
+      initials: 'RM',
+      score: 76,
+      timeSpent: '00:27:39',
+      attempts: 2,
+      status: 'Completed',
+      mastery: 'Near Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 8, total: 11, mastery: 'near-mastery' },
+        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' }
+      ]
+    },
+    {
+      id: '11',
+      name: 'Olivia Johnson',
+      initials: 'OJ',
+      score: 87,
+      timeSpent: '00:21:56',
+      attempts: 1,
+      status: 'Completed',
+      mastery: 'Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 9, total: 11, mastery: 'mastery' },
+        { name: 'Linear Equations', score: 9, total: 11, mastery: 'mastery' }
+      ]
+    },
+    {
+      id: '12',
+      name: 'Kevin Anderson',
+      initials: 'KA',
+      score: 63,
+      timeSpent: '00:33:24',
+      attempts: 2,
+      status: 'Completed',
+      mastery: 'Below Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 6, total: 11, mastery: 'below-mastery' },
+        { name: 'Linear Equations', score: 6, total: 11, mastery: 'below-mastery' }
+      ]
+    },
+    {
+      id: '13',
+      name: 'Sophia Lee',
+      initials: 'SL',
+      score: 93,
+      timeSpent: '00:22:07',
+      attempts: 1,
+      status: 'Completed',
+      mastery: 'Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 10, total: 11, mastery: 'mastery' },
+        { name: 'Linear Equations', score: 10, total: 11, mastery: 'mastery' }
+      ]
+    },
+    {
+      id: '14',
+      name: 'Tyler Brown',
+      initials: 'TB',
+      score: 69,
+      timeSpent: '00:30:45',
+      attempts: 2,
+      status: 'Completed',
+      mastery: 'Near Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 7, total: 11, mastery: 'near-mastery' },
+        { name: 'Linear Equations', score: 6, total: 11, mastery: 'below-mastery' }
+      ]
+    },
+    {
+      id: '15',
+      name: 'Madison Taylor',
+      initials: 'MT',
+      score: 82,
+      timeSpent: '00:25:33',
+      attempts: 1,
+      status: 'Completed',
+      mastery: 'Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 9, total: 11, mastery: 'mastery' },
+        { name: 'Linear Equations', score: 8, total: 11, mastery: 'near-mastery' }
+      ]
+    },
+    {
+      id: '16',
+      name: 'Jackson Wilson',
+      initials: 'JWi',
+      score: 74,
+      timeSpent: '00:28:59',
+      attempts: 1,
+      status: 'Completed',
+      mastery: 'Near Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 8, total: 11, mastery: 'near-mastery' },
+        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' }
+      ]
+    },
+    {
+      id: '17',
+      name: 'Chloe Garcia',
+      initials: 'CG',
+      score: 55,
+      timeSpent: '00:37:12',
+      attempts: 3,
+      status: 'Completed',
+      mastery: 'Below Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 5, total: 11, mastery: 'below-mastery' },
+        { name: 'Linear Equations', score: 5, total: 11, mastery: 'below-mastery' }
+      ]
+    },
+    {
+      id: '18',
+      name: 'Nathan Miller',
+      initials: 'NM',
+      score: 88,
+      timeSpent: '00:23:41',
+      attempts: 1,
+      status: 'Completed',
+      mastery: 'Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 9, total: 11, mastery: 'mastery' },
+        { name: 'Linear Equations', score: 9, total: 11, mastery: 'mastery' }
+      ]
+    },
+    {
+      id: '19',
+      name: 'Grace Thomas',
+      initials: 'GT',
+      score: 77,
+      timeSpent: '00:26:28',
+      attempts: 2,
+      status: 'Completed',
+      mastery: 'Near Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 8, total: 11, mastery: 'near-mastery' },
+        { name: 'Linear Equations', score: 7, total: 11, mastery: 'near-mastery' }
+      ]
+    },
+    {
+      id: '20',
+      name: 'Ethan Moore',
+      initials: 'EM',
+      score: 96,
+      timeSpent: '00:20:15',
+      attempts: 1,
+      status: 'Completed',
+      mastery: 'Mastery',
+      standards: [
+        { name: 'Algebraic Expressions', score: 11, total: 11, mastery: 'mastery' },
+        { name: 'Linear Equations', score: 10, total: 11, mastery: 'mastery' }
+      ]
     }
   ];
 
