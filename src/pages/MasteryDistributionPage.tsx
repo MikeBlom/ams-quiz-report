@@ -147,6 +147,7 @@ const MasteryDistributionPage = () => {
           <Card>
             <CardHeader>
               <CardTitle>Overall Mastery Distribution</CardTitle>
+              <p className="text-sm text-muted-foreground">Click on any pie slice to see student names</p>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
@@ -159,9 +160,16 @@ const MasteryDistributionPage = () => {
                     fill="#8884d8"
                     dataKey="value"
                     label={({ name, percentage }) => `${name}: ${percentage}%`}
+                    onClick={(data) => handleOverallMasteryClick(data.name as 'Mastery' | 'Near Mastery' | 'Below Mastery')}
+                    style={{ cursor: 'pointer' }}
                   >
                     {masteryData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
+                      <Cell 
+                        key={`cell-${index}`} 
+                        fill={entry.color}
+                        onClick={() => handleOverallMasteryClick(entry.name as 'Mastery' | 'Near Mastery' | 'Below Mastery')}
+                        style={{ cursor: 'pointer' }}
+                      />
                     ))}
                   </Pie>
                   <Tooltip />
